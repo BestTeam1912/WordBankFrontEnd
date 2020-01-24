@@ -7,8 +7,13 @@ import { UserComponent } from '../user/user.component';
   styleUrls: ['./comment.component.css']
 })
 export class CommentComponent implements OnInit {
-	user: UserComponent;
+	id: number;
 	text: string;
+	replies: CommentComponent[];
+	thread: Thread;
+	dateCreated: Date;
+	user: UserComponent;
+	replyingTo: CommentComponent;
   constructor() { }
 
   ngOnInit() {
