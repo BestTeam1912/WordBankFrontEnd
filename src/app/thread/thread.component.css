@@ -10,6 +10,9 @@
 
 .card-title{
     color: #5f5449;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .card-subtitle{
