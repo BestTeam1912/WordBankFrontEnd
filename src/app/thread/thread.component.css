@@ -1,0 +1,23 @@
+.card{
+    width: 18rem;
+    min-height: 10rem;
+    max-height: 15rem;
+    background: rgba(193, 66, 66, 0.1);
+}
+
+.card-body{    
+}
+
+.card-title{
+    color: #5f5449;
+}
+
+.card-subtitle{
+    color: #717ec3;
+}
+
+.card-text{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
