@@ -1,1 +1,24 @@
-<p>community works!</p>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1>Communities</h1>
+      <p>Discover your inner self through our curated communities.</p>
+    </div>
+  </div>
+
+<ul class="coms">
+  <li *ngFor="let com of communities"
+    [class.selected]="com === selectedCom"
+    (click)="onSelect(com)">
+    <span class="badge">{{com.id}}</span> {{com.title}}
+  </li>
+</ul>
+
+<div *ngIf="selectedCom">
+  <h2>{{selectedCom.title | uppercase}} Details</h2>
+  <div><span>id: </span>{{selectedCom.id}}</div>
+  <div>
+    <label>title:
+      <input [(ngModel)]="selectedCom.title" placeholder="title"/>
+    </label>
+  </div> 
+</div>
