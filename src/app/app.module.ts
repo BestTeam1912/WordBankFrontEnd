@@ -11,6 +11,8 @@ import { CommunityDetailComponent } from './community-detail/community-detail.co
 import { ThreadComponent } from './thread/thread.component';
 import { ThreadDetailComponent } from './thread-detail/thread-detail.component';
 import { from } from 'rxjs';
+import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
+
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { from } from 'rxjs';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
