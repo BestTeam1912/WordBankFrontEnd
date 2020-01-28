@@ -5,7 +5,26 @@
     </div>
   </div>
 
-<ul class="coms">
+<div class="row">
+  <div class="col-2"></div>
+  <div class="col-8">
+    <div class="list-group">
+      <a href="#" *ngFor="let com of communities" 
+      class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">relpy/{{com.title}}</h5>
+          <small class="text-muted">{{com.dateCreated}}</small>
+        </div>
+        <p class="mb-1">{{com.description}}</p>
+        <!-- <small class="text-muted">Donec id elit non mi porta.</small> -->
+      </a>
+    </div>
+  </div>
+  <div class="col-2"></div>
+</div>
+
+
+<!-- <ul class="coms">
   <li *ngFor="let com of communities"
     [class.selected]="com === selectedCom"
     (click)="onSelect(com)">
@@ -21,4 +40,4 @@
       <input [(ngModel)]="selectedCom.title" placeholder="title"/>
     </label>
   </div> 
-</div>
+</div> -->
