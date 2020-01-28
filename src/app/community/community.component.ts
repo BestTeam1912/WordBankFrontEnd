@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { COMMUNITIES } from '../mock-communities';
 import { Community } from './classes/community.class';
+import { CommunityService } from '../community.service';
 
 
 @Component({
@@ -9,12 +9,18 @@ import { Community } from './classes/community.class';
   styleUrls: ['./community.component.css']
 })
 export class CommunityComponent implements OnInit {
-  communities = COMMUNITIES;
+  communities : Community[];
   // selectedCom: Community;
 
-  constructor() { }
+  constructor(private service:CommunityService) { }
 
   ngOnInit() {
+    this.getCommunities();
+  }
+
+  getCommunities(): void {
+    this.service.getCommunities()
+        .subscribe(communities => this.communities = communities);
   }
 
   // onSelect(com: Community): void {

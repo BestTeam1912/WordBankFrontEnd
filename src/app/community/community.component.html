@@ -9,7 +9,7 @@
   <div class="col-2"></div>
   <div class="col-8">
     <div class="list-group">
-      <a href="#" *ngFor="let com of communities" 
+      <a *ngFor="let com of communities" routerLink="/community/{{com.title}}"
       class="list-group-item list-group-item-action flex-column align-items-start">
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1">relpy/{{com.title}}</h5>
