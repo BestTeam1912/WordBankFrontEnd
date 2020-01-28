@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
+<<<<<<< HEAD
 import { Title } from '@angular/platform-browser';
 import { Community } from './community/classes/community.class';
 import { Observable, of } from 'rxjs';
 import { COMMUNITIES } from './mock-communities';
+=======
+>>>>>>> development
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommunityService {
+<<<<<<< HEAD
   private url:string;
 
   constructor() { 
@@ -26,4 +30,8 @@ export class CommunityService {
     // TODO: send the message _after_ fetching the heroes
     return of(COMMUNITIES);
   }
+=======
+
+  constructor() { }
+>>>>>>> development
 }
