@@ -1,15 +1,15 @@
 <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1>Communities</h1>
-      <p>Discover your inner self through our curated communities.</p>
-    </div>
+  <div class="container">
+    <h1>Communities</h1>
+    <p>Discover your inner self through our curated communities.</p>
   </div>
+</div>
 
 <div class="row">
   <div class="col-2"></div>
   <div class="col-8">
     <div class="list-group">
-      <a href="#" *ngFor="let com of communities" 
+      <a *ngFor="let com of communities" routerLink="/community/{{com.title}}"
       class="list-group-item list-group-item-action flex-column align-items-start">
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1">relpy/{{com.title}}</h5>
@@ -22,6 +22,7 @@
   </div>
   <div class="col-2"></div>
 </div>
+
 
 <!-- <ul class="coms">
   <li *ngFor="let com of communities"
