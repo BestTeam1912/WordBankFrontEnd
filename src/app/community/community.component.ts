@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
 import { Community } from './classes/community.class';
 import { CommunityService } from '../community.service';
-=======
-import { COMMUNITIES } from '../mock-communities';
-import { Community } from './classes/community.class';
->>>>>>> development
+
 
 
 @Component({
@@ -14,11 +10,7 @@ import { Community } from './classes/community.class';
   styleUrls: ['./community.component.css']
 })
 export class CommunityComponent implements OnInit {
-<<<<<<< HEAD
   communities : Community[];
-=======
-  communities = COMMUNITIES;
->>>>>>> development
   // selectedCom: Community;
 
   constructor(private service:CommunityService) { }
