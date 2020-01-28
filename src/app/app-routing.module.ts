@@ -17,6 +17,8 @@ const routes: Routes = [
   {path:"community", component:CommunityComponent },
   {path:"community-detail", component:CommunityDetailComponent },
   {path:"comment", component:CommentComponent },
+  {path: 'community/:title', component: CommunityDetailComponent }
+
 ];
 
 @NgModule({
