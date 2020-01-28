@@ -10,15 +10,15 @@ import { Community } from './classes/community.class';
 })
 export class CommunityComponent implements OnInit {
   communities = COMMUNITIES;
-  selectedCom: Community;
+  // selectedCom: Community;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  onSelect(com: Community): void {
-    this.selectedCom = com;
-  }
+  // onSelect(com: Community): void {
+  //   this.selectedCom = com;
+  // }
 
 }
