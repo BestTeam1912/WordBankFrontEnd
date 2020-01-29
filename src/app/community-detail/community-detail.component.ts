@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class CommunityDetailComponent implements OnInit {
 
   private com: Community;
+  private addThreadBool: Boolean;
   constructor(private service:CommunityService,
     private route: ActivatedRoute,
     private router:Router) {
@@ -19,11 +20,16 @@ export class CommunityDetailComponent implements OnInit {
    
   ngOnInit() {
     this.getCommunityByTitle();
+    this.addThreadBool=false;
   }
 
   getCommunityByTitle(): void {
     const title = this.route.snapshot.paramMap.get('title');
     this.com = this.service.getCommunityByTitle(title);
+  }
+
+  changeThreadBool(){
+    this.addThreadBool=!this.addThreadBool;
   }
 
   // getCommunityByTitle(): void {
