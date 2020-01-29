@@ -1,5 +1,13 @@
 <div class="card">
-	<div class="rounded-2">
+	<div class="rounded-2 p-2">
+		<!-- links to replies -->
+		<div>
+			<ul *ngFor="let relp of comment.replies;" display="inline" >
+				<li>
+					<a href="relp.id">{{relp.id}}</a>
+				</li>
+			</ul>
+		</div>
 		<p class="p-3">{{comment.text}}</p>
 		<span class="float-right mr-3">{{comment.activeUser.user.username}} | 
 			CharBank: {{comment.activeUser.charBank}} | 

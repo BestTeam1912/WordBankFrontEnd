@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { CommentComponent } from './comment/comment.component';
+import { CommentService } from './comment.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommunityComponent } from './community/community.component';
@@ -12,6 +13,7 @@ import { ThreadComponent } from './thread/thread.component';
 import { ThreadDetailComponent } from './thread-detail/thread-detail.component';
 import { from } from 'rxjs';
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -28,9 +30,10 @@ import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+	FormsModule,
+	HttpClientModule
   ],
-  providers: [],
+  providers: [CommentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
