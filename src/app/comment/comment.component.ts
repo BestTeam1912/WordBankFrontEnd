@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Comment } from './class/comment';
-import { ActiveUser } from './class/active-user';
-import { Thread } from '../thread/classes/thread.class';
-import { User } from '../thread/classes/user.class';
 
 @Component({
   selector: 'app-comment',
@@ -11,19 +8,26 @@ import { User } from '../thread/classes/user.class';
 })
 export class CommentComponent implements OnInit {
 	private comment: Comment;
-	constructor() {//(AtiveUser au, Thread thread) {
+	constructor() {
 		this.comment = new Comment();
-		this.comment.id = 10;
-		let user = new User();
-		user.username = "user";
-		user.password = "pass";
-		this.comment.activeUser = new ActiveUser(user);
-		this.comment.dateCreated = new Date();
-		this.comment.dateCreated.toLocaleDateString();
-		this.comment.replies = null;
-		this.comment.replyingTo = null;
-		this.comment.text = "lorem ips um luuple aaapfrr doris crab acke me da";
-		this.comment.thread = new Thread();
+		// this.comment.id = 10;
+		// this.comment.dateCreated = new Date;
+		// this.comment.text = "some text like the quick red fox jumped over the white picket fence"
+		// let user = new User();
+		// user.password = "pass";
+		// user.username = "user";
+		// let activeuser = new ActiveUser();
+		// activeuser.dateCreated = new Date();
+		// activeuser.user = user;
+		// this.comment.activeUser = activeuser;
+	}
+
+	setComment(comment: Comment){
+		this.comment = comment;
+	}
+
+	reply(){
+//		document.getElementById()
 	}
 
 	ngOnInit() {

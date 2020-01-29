@@ -1,6 +1,51 @@
-<div class="rounded-0">
-	<p class="p-3">{{comment.text}}</p>
-	<span class="float-right mr-3">{{comment.activeUser.user.username}} | 
-		CharBank: {{comment.activeUser.charBank}} | 
-		{{comment.dateCreated.toLocaleDateString()}}</span>
+<div class="card">
+	<div class="rounded-2">
+		<form onsubmit="reply()">
+			<p class="p-3">{{comment.text}}</p>
+			<span class="float-right mr-3">{{comment.activeUser.user.username}} | 
+				CharBank: {{comment.activeUser.charBank}} | 
+				{{comment.dateCreated.toLocaleDateString()}}</span>
+			<input type="hidden" [value]="[comment.id]"/>
+			<button type="submit">reply</button>
+		</form>
+	</div>
+	<div [id]="[comment.id]">
+	</div>
 </div>
+
+<!--
+- Fount at: https://stackoverflow.com/questions/15446397/cleanest-way-to-add-reply-forms-to-nested-comments
+- Date found: 01/28/2020
+- use: adding a reply box to a comment hopefully
+
+<div class="comment">
+    comment1
+</div>
+<div class="comment">
+    comment2
+</div>
+<div style="display:none">
+    <form id="commentForm">
+        <textarea name="comment"></textarea>
+    </form>
+</div>
+
+var Comment = {
+    init: function() {
+        $(".comment").bind('click', $.proxy(this.handleClick, this));
+    },
+    handleClick: function(evt) {
+         var form = $('#commentForm').clone();
+         var target = $(evt.target);
+         var isFormAvailable = $("#commentForm", target).length > 0;
+         if(!isFormAvailable) {
+             $(evt.target).append(form);
+         }
+    }   
+};
+
+$(function() {
+    Comment.init();
+});
+
+-->

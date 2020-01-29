@@ -1,12 +1,12 @@
 import { User } from "../../thread/classes/user.class";
 
 export class ActiveUser {
-	//user: User;
+	user: User;
 	charBank: number;
 	dateCreated: Date;
 
-	constructor(private user: User){
-		//this.user = user;
+	constructor(){
+		this.user = new User();
 		this.charBank = 500;
 	}
 }
