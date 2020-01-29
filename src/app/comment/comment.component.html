@@ -17,9 +17,9 @@
 	</div>
 	<div *ngIf="wantToReply">
 		<form [id]="[comment.id]">
-			<textarea id="texts" class="p-3"></textarea>
+			<textarea id="texts" name="comment" [(ngModel)]="reply.text" class="p-3"></textarea>
 			<button type="button" (click)="cancel()">Cancel</button>
-			<button type="button" (click)="post()">Post Reply</button>
+			<button  type="button" (click)="post()">Post Reply</button>
 		</form>
 	</div>
 </div>
