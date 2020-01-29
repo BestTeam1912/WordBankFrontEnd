@@ -1,15 +1,18 @@
 <div class="card">
 	<div class="rounded-2">
-		<form onsubmit="reply()">
-			<p class="p-3">{{comment.text}}</p>
-			<span class="float-right mr-3">{{comment.activeUser.user.username}} | 
-				CharBank: {{comment.activeUser.charBank}} | 
-				{{comment.dateCreated.toLocaleDateString()}}</span>
-			<input type="hidden" [value]="[comment.id]"/>
-			<button type="submit">reply</button>
-		</form>
+		<p class="p-3">{{comment.text}}</p>
+		<span class="float-right mr-3">{{comment.activeUser.user.username}} | 
+			CharBank: {{comment.activeUser.charBank}} | 
+			{{comment.dateCreated.toLocaleDateString()}}</span>
+		<input type="hidden" [value]="[comment.id]"/>
+		<button type="button" (click)="replyToThisComment()">reply</button>
 	</div>
-	<div [id]="[comment.id]">
+	<div *ngIf="wantToReply">
+		<form [id]="[comment.id]">
+			<textarea id="texts" class="p-3"></textarea>
+			<button type="button" (click)="cancel()">Cancel</button>
+			<button type="button" (click)="post()">Post Reply</button>
+		</form>
 	</div>
 </div>
 
