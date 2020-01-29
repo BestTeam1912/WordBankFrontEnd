@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Comment } from './class/comment';
 import { User } from '../thread/classes/user.class';
 import { ActiveUser } from './class/active-user';
+import { CommentService } from '../comment.service';
 
 @Component({
   selector: 'app-comment',
@@ -12,9 +13,10 @@ export class CommentComponent implements OnInit {
 	private comment: Comment;
 	private reply: Comment;
 	private wantToReply: boolean;
-	constructor() {
+	constructor(private service:CommentService) {
 		this.wantToReply = false;
 		this.comment = new Comment();
+		this.comment.replies = [];
 		this.reply = new Comment();
 		this.comment.id = 10;
 		this.comment.dateCreated = new Date;
@@ -46,6 +48,8 @@ export class CommentComponent implements OnInit {
 		this.reply.replyingTo = this.comment;
 		this.reply.thread = this.comment.thread;
 		this.reply.text = document.getElementById("texts").value;
+		this.service.addComment(this.reply).subscribe(res=>this.reply = res);
+		this.comment.replies.push(this.reply);
 		console.log(this.reply);
 	}
 

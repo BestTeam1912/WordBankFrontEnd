@@ -9,7 +9,11 @@ import { Observable } from 'rxjs';
 export class CommentService {
 	private url: string;
 	constructor(private http:HttpClient) {
-		this.url = "http://localhost:4200/";
+		this.url = "http://localhost:9000/";
+	}
+
+	public addComment(comment:Comment){
+		return this.http.post<Comment>(this.url, comment);
 	}
 
 	public getCommentsToThreadId(id: number):Observable<Comment[]>{
