@@ -47,7 +47,7 @@ export class CommentComponent implements OnInit {
 		this.reply.dateCreated = new Date();
 		this.reply.replyingTo = this.comment;
 		this.reply.thread = this.comment.thread;
-		this.reply.text = document.getElementById("texts").value;
+		// this.reply.text = document.getElementById("texts").value;
 		this.service.addComment(this.reply).subscribe(res=>this.reply = res);
 		this.comment.replies.push(this.reply);
 		console.log(this.reply);
