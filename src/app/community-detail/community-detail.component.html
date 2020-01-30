@@ -20,16 +20,23 @@
 
         <div class="mb-3">
           <label for="addThreadTitle">Thread Title</label>
-          <textarea class="form-control" id="addThreadTitle" placeholder="Add Thread Title"></textarea>
+          <textarea class="form-control" id="addThreadTitle" 
+          placeholder="Add Thread Title" [(ngModel)]="addThread.title"
+          [ngModelOptions]="{standalone: true}"></textarea>
+          <!-- <h1>{{addThread.title}}</h1> -->
         </div> 
+
         <div class="mb-3">
           <label for="addThreadDescription">Thread Description</label>
           <textarea class="form-control"  id="addThreadDescription" rows="3"
-          placeholder="Add Thread Description"></textarea>
+          placeholder="Add Thread Description" [(ngModel)]="addThread.description" 
+          [ngModelOptions]="{standalone: true}"></textarea>
+          <!-- <h1>{{addThread.description}}</h1> -->
+
           <div class="add-thread-validation-message"></div>
         </div> 
         <div class="mb-3">
-          <button type="button" class="btn btn-primary" (click)="changeThreadBool()">Add Thread</button>
+          <button type="button" class="btn btn-primary" (click)="addNewThread()">Add Thread</button>
 
           <!-- <button type="submit" class="btn btn-primary">Add Thread</button> -->
         </div>
