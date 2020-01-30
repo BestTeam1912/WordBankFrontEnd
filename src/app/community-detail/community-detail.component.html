@@ -45,7 +45,7 @@
   <div class="col-2"></div>
 </div>
 
-<div class="row">
+<!-- <div class="row">
   <div class="col-2"></div>
   <div class="col-8">
     <a *ngFor="let thread of com.threads" class="list-group-item list-group-item-action flex-column align-items-start">
@@ -54,8 +54,17 @@
         <small class="text-muted">{{thread.dateCreated}}</small>
       </div>
       <p class="mb-1">{{thread.description}}</p>
-      <!-- <small class="text-muted">Donec id elit non mi porta.</small> -->
+      <small class="text-muted">Donec id elit non mi porta.</small>
     </a>
+  </div>
+  <div class="col-2"></div>
+</div> -->
+
+
+<div class="row">
+  <div class="col-2"></div>
+  <div class="col-8">
+      <app-thread *ngFor="let thread of com.threads" [thread] = "thread"></app-thread>
   </div>
   <div class="col-2"></div>
 </div>
