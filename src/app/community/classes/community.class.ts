@@ -4,6 +4,6 @@ export class Community{
     id:number;
     title:string;
     description:string;
-    thread:Thread[];
+    threads:Thread[];
     dateCreated:Date;
 }
