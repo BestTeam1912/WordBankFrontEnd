@@ -6,8 +6,8 @@ export class Comment {
 	id: number;
 	text: string;
 	replies: Comment[];
-	thread: Thread;
+//	thread: Thread;
 	dateCreated: Date;
 	activeUser: ActiveUser;
-	replyingTo: Comment;
+//	replyingTo: Comment;
 }
