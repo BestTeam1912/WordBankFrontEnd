@@ -14,8 +14,8 @@ export class ThreadComponent implements OnInit {
     // This is just for testing remove when you have a service.
     this.thread.title = "Look at this game!!!";
     this.thread.description = "So I just bought this game and I think its really cool!!!";
-    this.thread.user = new User();
-    this.thread.user.username = "someuser";
+    // this.thread.user = new User();
+    // this.thread.user.username = "someuser";
   }
 
   ngOnInit() {
