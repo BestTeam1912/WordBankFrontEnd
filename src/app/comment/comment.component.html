@@ -1,5 +1,5 @@
 <div class="card">
-	<div class="rounded-2 p-2">
+	<div class="rounded-2 p-2 m-3">
 		<!-- links to replies -->
 		<div>
 			<ul *ngFor="let relp of comment.replies;" display="inline" >
@@ -16,11 +16,18 @@
 		<button type="button" (click)="replyToThisComment()">reply</button>
 	</div>
 	<div *ngIf="wantToReply">
-		<form [id]="[comment.id]">
-			<textarea id="texts" name="replyHere" [(ngModel)]="reply.text" class="m-3"></textarea>
-			<button type="button" (click)="cancel()">Cancel</button>
-			<button  type="button" (click)="post()">Post Reply</button>
-		</form>
+		<div class="row">
+			<div class="col-sm-1"></div>
+			<div class="col-sm-8">
+				<textarea id="texts" class="m-3 container" name="replyHere" [(ngModel)]="reply.text"></textarea>
+				<div class="btn-group btn-group-sm float-right m-1">
+					<button type="button" class="btn btn-primary"(click)="post()">Post Reply</button>
+					<button type="button" class="btn btn-primary" (click)="cancel()">Cancel</button>
+				</div>
+			</div>
+			<div class="col-sm-3"></div>
+		</div>
+		
 	</div>
 </div>
 
