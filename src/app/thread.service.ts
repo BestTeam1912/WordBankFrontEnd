@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { THREAD } from './thread/THREAD.dummydata';
+// import { THREAD } from './thread/THREAD.dummydata';
 import { Thread } from './thread/classes/thread.class';
 import { Observable, of } from 'rxjs';
 
@@ -10,7 +10,8 @@ export class ThreadService {
   private threads:Thread[];
 
   constructor() {
-    this.threads = THREAD;
+    // this.threads = [THREAD];
+    this.threads=[];
   }
 
   findAll():Observable<Thread[]>{

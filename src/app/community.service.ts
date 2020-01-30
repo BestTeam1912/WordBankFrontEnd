@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Community } from './community/classes/community.class';
 import { Observable, of } from 'rxjs';
-import { COMMUNITIES } from './mock-communities';
+// import { COMMUNITIES } from './mock-communities';
 import { HttpClient} from "@angular/common/http";
+import { Thread } from './thread/classes/thread.class';
 
 
 @Injectable({
@@ -27,4 +28,5 @@ export class CommunityService {
   getCommunities(): Observable<Community[]> {
     return this.http.get<Community[]>(this.url);
   }
+
 }
