@@ -14,6 +14,7 @@ export class CommunityDetailComponent implements OnInit {
   private com: Community;
   private addThreadBool: Boolean;
   private addThread: Thread;
+  private threads: Thread[];
 
   constructor(private service:CommunityService,
     private route: ActivatedRoute,
@@ -25,12 +26,13 @@ export class CommunityDetailComponent implements OnInit {
   ngOnInit() {
     this.getCommunityByTitle();
     this.addThreadBool=false;
+    this.getCommunityThreads();
     // getThreadsByID(com.id);
   }
 
   getCommunityByTitle(): void {
     const title = this.route.snapshot.paramMap.get('title');
-    this.com = this.service.getCommunityByTitle(title);
+    this.service.getCommunityByTitle(title).subscribe(com => this.com = com);
   }
 
   changeThreadBool(){
@@ -43,10 +45,8 @@ export class CommunityDetailComponent implements OnInit {
     this.addThreadBool=!this.addThreadBool;
   }
 
-  // getCommunityByTitle(): void {
-  //   const id = +this.route.snapshot.paramMap.get('title');
-  //   this.service.getCommunityByTitle(id)
-  //     .subscribe(com => this.com = com);
-  // }
-
+  getCommunityThreads(): void {
+    const title = this.route.snapshot.paramMap.get('title');
+    this.service.getCommunityThreads(title).subscribe(threads => this.threads = threads);
+  }
 }
