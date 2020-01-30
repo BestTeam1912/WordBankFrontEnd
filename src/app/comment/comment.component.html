@@ -1,17 +1,17 @@
 <div class="card">
 	<div class="rounded-2 p-2 m-3">
 		<!-- links to replies -->
-		<div>
-			<ul *ngFor="let relp of comment.replies;" display="inline" >
-				<li>
-					<a href="relp.id">{{relp.id}}</a>
+		<div class="container">
+			<ul class="list-group list-group-horizontal">
+				<li *ngFor="let relp of comment.replies;" class="list-group-item small p-1">
+					<a [href]="[relp.id]">{{relp.id}}</a>
 				</li>
 			</ul>
 		</div>
-		<p class="p-3">{{comment.text}}</p>
-		<span class="float-right mr-3">{{comment.activeUser.user.username}} | 
-			CharBank: {{comment.activeUser.charBank}} | 
-			{{comment.dateCreated.toLocaleDateString()}}</span>
+		<p class="py-1">{{comment.text}}</p>
+		<span class="float-right mr-3">username | 
+			CharBank: # | 
+			{{comment.dateCreated.toString()}}</span>
 		<input type="hidden" [value]="[comment.id]"/>
 		<button type="button" (click)="replyToThisComment()">reply</button>
 	</div>
