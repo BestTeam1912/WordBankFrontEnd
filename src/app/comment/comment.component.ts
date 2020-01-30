@@ -40,16 +40,20 @@ export class CommentComponent implements OnInit {
 
 	cancel(){
 		this.wantToReply = false;
+		this.reply = new Comment();
 	}
 
 	post(){
 		this.reply.activeUser = new ActiveUser();
 		this.reply.dateCreated = new Date();
-		this.reply.replyingTo = this.comment;
-		this.reply.thread = this.comment.thread;
+		// this.reply.replyingTo = this.comment;
+		// this.reply.thread = this.comment.thread;
 		// this.reply.text = document.getElementById("texts").value;
-		this.service.addComment(this.reply).subscribe(res=>this.reply = res);
-		this.comment.replies.push(this.reply);
+		this.service.addComment(this.reply).subscribe(res=>{
+			this.reply = res;
+			this.comment.replies.push(this.reply);
+		});
+		// this.comment.replies.push(this.reply);
 		console.log(this.reply);
 	}
 
