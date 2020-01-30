@@ -26,7 +26,6 @@ export class CommunityDetailComponent implements OnInit {
   ngOnInit() {
     this.getCommunityByTitle();
     this.addThreadBool=false;
-    this.getCommunityThreads();
     // getThreadsByID(com.id);
   }
 
@@ -45,8 +44,4 @@ export class CommunityDetailComponent implements OnInit {
     this.addThreadBool=!this.addThreadBool;
   }
 
-  getCommunityThreads(): void {
-    const title = this.route.snapshot.paramMap.get('title');
-    this.service.getCommunityThreads(title).subscribe(threads => this.threads = threads);
-  }
 }
