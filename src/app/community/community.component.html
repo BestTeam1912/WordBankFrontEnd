@@ -7,13 +7,53 @@
 
 <div class="row">
   <div class="col-2"></div>
+    <div class="col-8">
+
+      <button id = "div-add-button" type="button" class="btn btn-primary" (click)="changeCommunityBool()">Add Community</button>
+
+      <form class="add-community" *ngIf="addCommunityBool">
+        <h4>Add Community</h4>
+
+        <button type="button" class="close" (click)="changeCommunityBool()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+        <div class="mb-3">
+          <label for="addCommunityTitle">Community Title</label>
+          <textarea class="form-control" id="addCommunityTitle" 
+          placeholder="Add Community Title" [(ngModel)]="addCom.title"
+          [ngModelOptions]="{standalone: true}"></textarea>
+          <!-- <h1>{{addThread.title}}</h1> -->
+        </div> 
+
+        <div class="mb-3">
+          <label for="addCommunityDescription">Community Description</label>
+          <textarea class="form-control"  id="addCommunityDescription" rows="3"
+          placeholder="Add Community Description" [(ngModel)]="addCom.description" 
+          [ngModelOptions]="{standalone: true}"></textarea>
+          <!-- <h1>{{addThread.description}}</h1> -->
+
+          <div class="add-community-validation-message"></div>
+        </div> 
+        <div class="mb-3">
+          <button type="button" class="btn btn-primary" (click)="addNewCommunity()">Add Community</button>
+          <!-- <button type="submit" class="btn btn-primary">Add Thread</button> -->
+        </div>
+      </form>
+    </div>
+  <div class="col-2"></div>
+</div>
+
+<div class="row">
+  <div class="col-2"></div>
   <div class="col-8">
     <div class="list-group">
       <a *ngFor="let com of communities" routerLink="/community/{{com.title}}"
       class="list-group-item list-group-item-action flex-column align-items-start">
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1">relpy/{{com.title}}</h5>
-          <small class="text-muted">{{com.dateCreated}}</small>
+          <small class="text-muted">{{com.dateCreated | date:'medium' }}</small>
+          <!-- <button class="delete" title="delete animal" (click)="delete(animal)">x</button> -->
         </div>
         <p class="mb-1">{{com.description}}</p>
         <!-- <small class="text-muted">Donec id elit non mi porta.</small> -->
@@ -24,15 +64,7 @@
 </div>
 
 
-<!-- <ul class="coms">
-  <li *ngFor="let com of communities"
-    [class.selected]="com === selectedCom"
-    (click)="onSelect(com)">
-    <span class="badge">{{com.id}}</span> {{com.title}}
-  </li>
-</ul>
-
-<div *ngIf="selectedCom">
+<!-- <div *ngIf="selectedCom">
   <h2>{{selectedCom.title | uppercase}} Details</h2>
   <div><span>id: </span>{{selectedCom.id}}</div>
   <div>

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 // import { THREAD } from './thread/THREAD.dummydata';
 import { Thread } from './thread/classes/thread.class';
+import { HttpClient} from "@angular/common/http";
 import { Observable, of } from 'rxjs';
 
 @Injectable({
@@ -8,8 +9,10 @@ import { Observable, of } from 'rxjs';
 })
 export class ThreadService {
   private threads:Thread[];
+  private url:string;
 
-  constructor() {
+  constructor(private http:HttpClient) {
+    this.url="http://localhost:9000/thread";
     // this.threads = [THREAD];
     this.threads=[];
   }
@@ -28,8 +31,8 @@ export class ThreadService {
     });
   }
 
-  createThread(thread:Thread){
-    this.threads.push(thread);
+  createThread(thread:Thread):Observable<Thread>{
+    return this.http.post<Thread>(this.url + "/add", thread);
   }
 
   updateThread(thread:Thread){
