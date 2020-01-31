@@ -1,19 +1,31 @@
 import { Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
+import { User } from "./user";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+
   private url:string;
-  constructor() {
-    this.url="http://localhost:4200/";
+
+  constructor(private http:HttpClient) {
+    this.url="http://localhost:9000/";
    }
 
    public getUserByUsername(username:string){}
 
-   public login(){}
+   public login(user:User):Observable<User>{
+     return this.http.post<User>(this.url, user);
+   }
 
-   public registerUser(username:string, password:string){}
+   public registerUser(user:User):Observable<User>{
+     return this.http.post<User>(this.url, user);
+   }
+
+   public registerAdmin(user:User):Observable<User>{
+     return this.http.post<User>(this.url, user);
+   }
 }
