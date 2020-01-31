@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Community } from './community/classes/community.class';
 import { Observable, of } from 'rxjs';
-import { COMMUNITIES } from './mock-communities';
+// import { COMMUNITIES } from './mock-communities';
+import { HttpClient} from "@angular/common/http";
+import { Thread } from './thread/classes/thread.class';
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,20 +13,30 @@ import { COMMUNITIES } from './mock-communities';
 export class CommunityService {
   private url:string;
 
-  constructor() { 
-    this.url="http://localhost:4200/";
+  constructor(private http:HttpClient) { 
+    this.url="http://localhost:9000/community";
   }
+  public getCommunityByTitle(title:string){
+    console.log(this.http.get<Community>(this.url + "/" + title));
+    return this.http.get<Community>(this.url + "/" + title);
+  }
+
   // public getCommunityByTitle(title:string){
-  //   return this.http.get<Community>(this.url + "/" + title);
+  //   return COMMUNITIES.find(element => element.title == title);
   // }
 
-  public getCommunityByTitle(title:string){
-    return COMMUNITIES.find(element => element.title == title);
-  }
-
-
   getCommunities(): Observable<Community[]> {
-    // TODO: send the message _after_ fetching the heroes
-    return of(COMMUNITIES);
+    return this.http.get<Community[]>(this.url);
   }
+
+  addCommunity(com:Community):Observable<Community>{
+    return this.http.post<Community>(this.url + "/add", com);
+  }
+
+  public deleteCommunity(com:Community){
+    console.log(com);
+    return this.http.delete<Community>(this.url + "/delete/" + com.id);
+  }
+
+
 }

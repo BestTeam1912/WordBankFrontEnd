@@ -5,5 +5,6 @@ export class Thread{
     id:number;
     title:string;
     description:string;
-    user:User;
+    comments:Comment[];
+    dateCreated:Date;
 }

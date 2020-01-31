@@ -1,1 +1,37 @@
-<p>login works!</p>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 align="center">Relpy</h1>
+        <p align="center">come join our community!</p>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="col-xs-4"></div>
+            <div class="col-xs-4" align="center" style="background-color:hsl(184, 86%, 31%)">
+                <Label>Enter your credentials to log in</Label>
+                <br>
+                <label>Username</label>
+                <br>
+                <input type="text" [(ngModel)]="user.username" placeholder="Enter Username">
+                <br>
+                <label>Password</label>
+                <br>
+                <input type="text" [(ngModel)]="user.password" placeholder="Enter Password">
+                <br>
+                <br>
+                <div class="btn-toolbar" role="toolbar" align="center">
+                    <div class="btn-group mr-2" role="group">
+                        <button type="button" class="btn btn-dark">Login</button>
+                    </div>
+                    <div class="btn-group mr-2" role="group">
+                        <button type="button" class="btn btn-dark"><a routerLink="/register">Register</a></button>
+                    </div>
+                </div>
+                <br>
+                <br> 
+            </div>
+            <div class="col-xs-4"></div>
+        </div>
+    </div>
+</div>

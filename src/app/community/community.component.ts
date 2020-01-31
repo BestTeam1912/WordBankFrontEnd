@@ -11,9 +11,14 @@ import { CommunityService } from '../community.service';
 })
 export class CommunityComponent implements OnInit {
   communities : Community[];
-  // selectedCom: Community;
+  private addCommunityBool: boolean;
+  private addCom: Community;
 
-  constructor(private service:CommunityService) { }
+
+  constructor(private service:CommunityService) { 
+    this.addCommunityBool=false;
+    this.addCom = new Community();
+  }
 
   ngOnInit() {
     this.getCommunities();
@@ -24,8 +29,22 @@ export class CommunityComponent implements OnInit {
         .subscribe(communities => this.communities = communities);
   }
 
-  // onSelect(com: Community): void {
-  //   this.selectedCom = com;
+  changeCommunityBool(){
+    this.addCommunityBool=!this.addCommunityBool;
+  }
+
+
+  addNewCommunity(){
+    this.addCom.dateCreated=new Date();
+    this.service.addCommunity(this.addCom).subscribe(data => this.communities.push(data));
+    this.addCommunityBool=!this.addCommunityBool;
+  }
+
+
+
+  // delete(animal: Animal): void {
+  //   this.animals = this.animals.filter(h => h !== animal);
+  //   this.service.deleteAnimal(animal).subscribe();
   // }
 
 }

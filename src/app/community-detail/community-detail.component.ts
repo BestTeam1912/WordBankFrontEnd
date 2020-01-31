@@ -3,6 +3,7 @@ import { Community } from '../community/classes/community.class';
 import { CommunityService } from '../community.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Thread } from '../thread/classes/thread.class';
+import { ThreadService } from '../thread.service';
 
 @Component({
   selector: 'app-community-detail',
@@ -16,6 +17,7 @@ export class CommunityDetailComponent implements OnInit {
   private addThread: Thread;
 
   constructor(private service:CommunityService,
+    private serviceThread:ThreadService,
     private route: ActivatedRoute,
     private router:Router) {
     this.com=new Community();
@@ -30,7 +32,7 @@ export class CommunityDetailComponent implements OnInit {
 
   getCommunityByTitle(): void {
     const title = this.route.snapshot.paramMap.get('title');
-    this.com = this.service.getCommunityByTitle(title);
+    this.service.getCommunityByTitle(title).subscribe(com => this.com = com);
   }
 
   changeThreadBool(){
@@ -38,15 +40,15 @@ export class CommunityDetailComponent implements OnInit {
   }
 
   addNewThread(){
-    console.log(this.addThread.title);
-    console.log(this.addThread.description);
+    this.addThread.dateCreated=new Date();
+    this.serviceThread.createThread(this.addThread).subscribe(data => this.com.threads.push(data));
     this.addThreadBool=!this.addThreadBool;
+
   }
 
-  // getCommunityByTitle(): void {
-  //   const id = +this.route.snapshot.paramMap.get('title');
-  //   this.service.getCommunityByTitle(id)
-  //     .subscribe(com => this.com = com);
-  // }
+  deleteCommunity(){
+    this.service.deleteCommunity(this.com).subscribe();
+    this.router.navigate(['/community']);
+  }
 
 }

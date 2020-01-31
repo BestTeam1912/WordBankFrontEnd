@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { THREAD } from './thread/THREAD.dummydata';
+// import { THREAD } from './thread/THREAD.dummydata';
 import { Thread } from './thread/classes/thread.class';
+import { HttpClient} from "@angular/common/http";
 import { Observable, of } from 'rxjs';
 import { Community } from './community/classes/community.class';
 
@@ -9,9 +10,12 @@ import { Community } from './community/classes/community.class';
 })
 export class ThreadService {
   private threads:Thread[];
+  private url:string;
 
-  constructor() {
-    this.threads = THREAD;
+  constructor(private http:HttpClient) {
+    this.url="http://localhost:9000/thread";
+    // this.threads = [THREAD];
+    this.threads=[];
   }
 
   findAll():Observable<Thread[]>{
@@ -28,6 +32,7 @@ export class ThreadService {
     });
   }
 
+<<<<<<< HEAD
   findByCommunity(community:Community):Observable<Thread[]>{
     return of();
   }
@@ -38,6 +43,10 @@ export class ThreadService {
 
   createThread(thread:Thread){
     this.threads.push(thread);
+=======
+  createThread(thread:Thread):Observable<Thread>{
+    return this.http.post<Thread>(this.url + "/add", thread);
+>>>>>>> development
   }
 
   updateThread(thread:Thread){

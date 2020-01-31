@@ -6,8 +6,17 @@ export class Comment {
 	id: number;
 	text: string;
 	replies: Comment[];
-	thread: Thread;
+//	thread: Thread;
 	dateCreated: Date;
-	activeUser: ActiveUser;
-	replyingTo: Comment;
+//	activeUser: ActiveUser;
+//	replyingTo: Comment;
+
+	constructor(){
+		this.text = "";
+		this.replies = [];
+	}
+
+	isValidComment(){
+		return (this.text.length) ? ((this.text.length > 255) ? false : true) : false;
+	}
 }

@@ -1,3 +1,12 @@
 .comment{
 	padding-left: 40px;
 }
+
+.reply-list{
+	display: flex;
+	list-style: none;
+}
+
+.reply-item{
+	margin: 0px 5px;
+}
