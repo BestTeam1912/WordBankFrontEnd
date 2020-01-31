@@ -16,8 +16,10 @@ export class CommentComponent implements OnInit {
 	constructor(private service:CommentService) {
 		this.wantToReply = false;
 		this.comment = new Comment();
+		this.comment.text = "";
 		this.comment.replies = [];
 		this.reply = new Comment();
+		this.reply.text = "";
 		// this.comment.id = 10;
 		this.comment.dateCreated = new Date;
 		console.log(this.comment.dateCreated.toString);
@@ -51,16 +53,33 @@ export class CommentComponent implements OnInit {
 	post(){
 		//this.reply.activeUser = new ActiveUser();
 		this.reply.dateCreated = new Date();
+
 		// this.reply.replyingTo = this.comment;
 		// this.reply.thread = this.comment.thread;
 		// this.reply.text = document.getElementById("texts").value;
-		if(!this.reply.id){
+		if(this.reply.isValidComment()){
 			this.service.addComment(this.reply).subscribe(res=>{
 				this.reply = res;
 				this.comment.replies.push(this.reply);
 				this.reply = new Comment();
 				this.service.updateComment(this.comment).subscribe(res=>this.comment = res);
 			});
+		}else{
+			this.reply.text = "Needs Text to post a comment In this space now we"+
+			"will try to take as many characters away so that the message can"+
+			"not be sent. I think it needs five hundred characters before it "+
+			"stops the comment from going through to stop you a second time"+
+			". I hope this works well. Now you might know what is going on"+
+			"I don't know if I have typed enough characters to stop it from "+
+			"going through, So I will just type a little more to confirm then"+
+			" copy and paste\n"+"Needs Text to post a comment In this space now we"+
+			"will try to take as many characters away so that the message can"+
+			"not be sent. I think it needs five hundred characters before it "+
+			"stops the comment from going through to stop you a second time"+
+			". I hope this works well. Now you might know what is going on"+
+			"I don't know if I have typed enough characters to stop it from "+
+			"going through, So I will just type a little more to confirm then"+
+			" copy and paste";
 		}
 		
 		// this.comment.replies.push(this.reply);

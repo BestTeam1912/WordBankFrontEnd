@@ -10,4 +10,13 @@ export class Comment {
 	dateCreated: Date;
 //	activeUser: ActiveUser;
 //	replyingTo: Comment;
+
+	constructor(){
+		this.text = "";
+		this.replies = [];
+	}
+
+	isValidComment(){
+		return (this.text.length) ? ((this.text.length > 255) ? false : true) : false;
+	}
 }
