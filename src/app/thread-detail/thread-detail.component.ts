@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ThreadService } from '../thread.service';
+import { Thread } from '../thread/classes/thread.class';
+
 
 @Component({
   selector: 'app-thread-detail',
@@ -6,10 +9,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./thread-detail.component.css']
 })
 export class ThreadDetailComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
+  private thread:Thread;
+  constructor(private threadService:ThreadService) {}
+  ngOnInit() {}
 
 }

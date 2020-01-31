@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { THREAD } from './thread/THREAD.dummydata';
 import { Thread } from './thread/classes/thread.class';
 import { Observable, of } from 'rxjs';
+import { Community } from './community/classes/community.class';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,14 @@ export class ThreadService {
     this.threads = this.threads.filter( t => {
       t.id != id;
     });
+  }
+
+  findByCommunity(community:Community):Observable<Thread[]>{
+    return of();
+  }
+
+  findCommentsByThread(thread:Thread){
+    // Get All Commends based on thread
   }
 
   createThread(thread:Thread){
