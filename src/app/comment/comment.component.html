@@ -1,7 +1,7 @@
 <div [id]="['comment#comment', comment.id]" class="card">
-	<div class="rounded-2 p-2 m-3">
+	<div class="container">
 		<!-- links to replies -->
-		<div class="container">
+		<div class="rounded-2 m-3">
 			<ul class="list-group list-group-horizontal">
 				<li *ngFor="let relp of comment.replies;" class="list-group-item small p-1">
 					<a [href]="['comment#comment', relp.id]">{{relp.id}}</a>
