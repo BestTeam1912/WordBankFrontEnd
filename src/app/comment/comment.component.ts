@@ -18,16 +18,21 @@ export class CommentComponent implements OnInit {
 		this.comment = new Comment();
 		this.comment.replies = [];
 		this.reply = new Comment();
-		this.comment.id = 10;
+		// this.comment.id = 10;
 		this.comment.dateCreated = new Date;
+		console.log(this.comment.dateCreated.toString);
 		this.comment.text = "some text like the quick red fox jumped over the white picket fence"
-		let user = new User();
-		user.password = "pass";
-		user.username = "user";
-		let activeuser = new ActiveUser();
-		activeuser.dateCreated = new Date();
-		activeuser.user = user;
-		this.comment.activeUser = activeuser;
+		// let user = new User();
+		// user.password = "pass";
+		// user.username = "user";
+		// let activeuser = new ActiveUser();
+		// activeuser.dateCreated = new Date();
+		// activeuser.user = user;
+		this.service.addComment(this.comment)
+			.subscribe(res=>{
+				this.comment = res;
+				console.log(this.comment);
+			});
 	}
 
 	setComment(comment: Comment){
@@ -44,15 +49,20 @@ export class CommentComponent implements OnInit {
 	}
 
 	post(){
-		this.reply.activeUser = new ActiveUser();
+		//this.reply.activeUser = new ActiveUser();
 		this.reply.dateCreated = new Date();
 		// this.reply.replyingTo = this.comment;
 		// this.reply.thread = this.comment.thread;
 		// this.reply.text = document.getElementById("texts").value;
-		this.service.addComment(this.reply).subscribe(res=>{
-			this.reply = res;
-			this.comment.replies.push(this.reply);
-		});
+		if(!this.reply.id){
+			this.service.addComment(this.reply).subscribe(res=>{
+				this.reply = res;
+				this.comment.replies.push(this.reply);
+				this.reply = new Comment();
+				this.service.updateComment(this.comment).subscribe(res=>this.comment = res);
+			});
+		}
+		
 		// this.comment.replies.push(this.reply);
 		console.log(this.reply);
 	}

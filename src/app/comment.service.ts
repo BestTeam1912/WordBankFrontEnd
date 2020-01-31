@@ -16,12 +16,16 @@ export class CommentService {
 		return this.http.post<Comment>(this.url+"/add", comment);
 	}
 
+	public updateComment(comment:Comment){
+		return this.http.put<Comment>(this.url+"/update", comment);
+	}
+
 	public getCommentsToThreadId(id: number):Observable<Comment[]>{
 		return this.http.get<Comment[]>(this.url+"/thread/"+id);
 	}
 
-	public getCommentsRelatingToCommentId(id: number):Observable<Comment[]>{
-		return this.http.get<Comment[]>(this.url+"/related/"+id);
+	public getCommentsRelatingToCommentId(id: number):Observable<Comment>{
+		return this.http.get<Comment>(this.url+"/"+id);
 	}
 }
 

@@ -8,6 +8,6 @@ export class Comment {
 	replies: Comment[];
 //	thread: Thread;
 	dateCreated: Date;
-	activeUser: ActiveUser;
+//	activeUser: ActiveUser;
 //	replyingTo: Comment;
 }
