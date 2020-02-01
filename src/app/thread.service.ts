@@ -38,8 +38,6 @@ export class ThreadService {
     reply.dateCreated = new Date();
     return this.http.post<Comment>(this.url + "/reply/" + thread.id + "/" + comment.id, reply);
   }
-
-
   createThread(thread:Thread):Observable<Thread>{
     return this.http.post<Thread>(this.url + "/add", thread);
   }
