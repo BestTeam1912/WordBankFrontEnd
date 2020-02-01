@@ -3,6 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { User } from "./user";
+import { Status } from "./status";
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class UserService {
    public getUserByUsername(username:string){}
 
    public login(user:User):Observable<User>{
-     return this.http.post<User>(this.url, user);
+     return this.http.post<User>(this.url+"/login", user);
    }
 
    public registerUser(user:User):Observable<User>{
@@ -27,6 +28,7 @@ export class UserService {
    }
 
    public registerAdmin(user:User):Observable<User>{
-     return this.http.post<User>(this.url, user);
-   }
+    return this.http.post<User>(this.url+"register/admin", user);
+  }
+
 }

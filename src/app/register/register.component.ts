@@ -11,17 +11,21 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   private user:User;
-  private status:boolean
+  private cuser:User;
   constructor(private service:UserService) {
     this.user=new User();
+    this.cuser=new User();
    }
   
    registerUser(){
      console.log(this.user.username);
      console.log(this.user.password);
-     this.service.registerUser(this.user).subscribe(res=>status);
-     if(status){
-       window.alert("User was registered successfully");
+     this.service.registerUser(this.user).subscribe(res=>{
+       this.cuser = res;
+       console.dir(this.cuser.username);
+     });
+     if(this.cuser.username != "taken"){
+       window.alert("User was registered successfully, you can now log in");
      }else{
        window.alert("There was an error, please try again");
      }
@@ -29,13 +33,16 @@ export class RegisterComponent implements OnInit {
 
    registerAdmin(){
     console.log(this.user.username);
-    console.log(this.user.password);
-    this.service.registerAdmin(this.user).subscribe(res=>status);
-    if(status){
-      window.alert("User was registered successfully");
-    }else{
-      window.alert("There was an error, please try again");
-    }
+     console.log(this.user.password);
+     this.service.registerAdmin(this.user).subscribe(res=>{
+       this.cuser = res;
+       console.dir(this.cuser.username);
+     });
+     if(this.cuser.username != "taken"){
+       window.alert("User was registered successfully, you can now log in");
+     }else{
+       window.alert("There was an error, please try again");
+     }
   }
 
   ngOnInit() {
