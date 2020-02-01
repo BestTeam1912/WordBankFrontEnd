@@ -14,6 +14,7 @@ import { ThreadDetailComponent } from './thread-detail/thread-detail.component';
 import { from } from 'rxjs';
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { HttpClientModule } from '@angular/common/http';
+import { RegisterAdminComponent } from './register-admin/register-admin.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     ThreadComponent,
     ThreadDetailComponent,
     CommentComponent,
+    RegisterAdminComponent,
   ],
   imports: [
     BrowserModule,
