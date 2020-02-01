@@ -4,6 +4,7 @@ import { Thread } from './thread/classes/thread.class';
 import { HttpClient} from "@angular/common/http";
 import { Observable, of } from 'rxjs';
 import { Community } from './community/classes/community.class';
+import { Comment } from './comment/class/comment';
 
 @Injectable({
   providedIn: 'root'
@@ -32,10 +33,13 @@ export class ThreadService {
     });
   }
 
-  findCommentsByThread(thread:Thread){
-    // Get All Commends based on thread
+  findCommentsByThread(threadId:number):Observable<Comment[]>{
+    return this.http.get<Comment[]>(this.url + "/get/comments/" + threadId);
   }
 
+  addComment(thread:Thread, comment:Comment):Observable<Comment>{
+    return this.http.post<Comment>(this.url + "/add/comment/" + thread.id, comment);
+  }
 
   createThread(thread:Thread):Observable<Thread>{
     return this.http.post<Thread>(this.url + "/add", thread);
@@ -45,5 +49,10 @@ export class ThreadService {
   updateThread(thread:Thread){
     let threadToUpdate = this.threads.find( t => t.id == thread.id )
     threadToUpdate = thread;
+  }
+
+  deleteThread(threadid:number, comid:number){
+    console.log(this.url + "/delete/" + threadid);
+    return this.http.delete<Community>(this.url + "/delete/" + threadid + "/" + comid);
   }
 }

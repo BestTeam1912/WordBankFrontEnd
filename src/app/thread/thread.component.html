@@ -1,6 +1,13 @@
 <div class="card rounded-0">
     <div class="card-body p-3">
-        <h4 class="card-title">{{thread.title}}</h4>
+        <div>
+            <h4 class="card-title">{{thread.title}}</h4>
+            <!-- <button type="button" class="close" (click)="changeCommunityBool()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button> -->
+            <button class="btn" (click)="deleteThread(thread)">&times; Delete</button>
+        </div>
+        
         <!-- <p class="card-subtitle">{{thread.user.username}}</p> -->
         <div class="card-text">{{thread.description}}</div>
     </div>

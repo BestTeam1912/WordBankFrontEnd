@@ -14,8 +14,6 @@ export class CommunityComponent implements OnInit {
   private addCommunityBool: boolean;
   private addCom: Community;
 
-  
-
   constructor(private service:CommunityService) { 
     this.addCommunityBool=false;
     this.addCom = new Community();
@@ -38,6 +36,7 @@ export class CommunityComponent implements OnInit {
   addNewCommunity(){
     this.addCom.dateCreated=new Date();
     this.service.addCommunity(this.addCom).subscribe(data => this.communities.push(data));
+    this.addCom = new Community();
     this.addCommunityBool=!this.addCommunityBool;
   }
 
