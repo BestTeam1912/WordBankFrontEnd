@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-// import { THREAD } from './thread/THREAD.dummydata';
 import { Thread } from './thread/classes/thread.class';
 import { HttpClient} from "@angular/common/http";
 import { Observable, of } from 'rxjs';
@@ -15,7 +14,6 @@ export class ThreadService {
 
   constructor(private http:HttpClient) {
     this.url="http://localhost:9000/thread";
-    // this.threads = [THREAD];
     this.threads=[];
   }
 
@@ -41,6 +39,7 @@ export class ThreadService {
     return this.http.post<Comment>(this.url + "/reply/" + thread.id + "/" + comment.id, reply);
   }
 
+
   createThread(thread:Thread):Observable<Thread>{
     return this.http.post<Thread>(this.url + "/add", thread);
   }
@@ -48,5 +47,10 @@ export class ThreadService {
   updateThread(thread:Thread){
     let threadToUpdate = this.threads.find( t => t.id == thread.id )
     threadToUpdate = thread;
+  }
+
+  deleteThread(threadid:number, comid:number){
+    console.log(this.url + "/delete/" + threadid);
+    return this.http.delete<Community>(this.url + "/delete/" + threadid + "/" + comid);
   }
 }
