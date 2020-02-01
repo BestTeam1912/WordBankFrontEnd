@@ -41,8 +41,6 @@ export class ThreadService {
     return this.http.post<Comment>(this.url + "/add/comment/" + thread.id, comment);
   }
 
-
-
   createThread(thread:Thread):Observable<Thread>{
     return this.http.post<Thread>(this.url + "/add", thread);
 
@@ -51,5 +49,10 @@ export class ThreadService {
   updateThread(thread:Thread){
     let threadToUpdate = this.threads.find( t => t.id == thread.id )
     threadToUpdate = thread;
+  }
+
+  deleteThread(threadid:number, comid:number){
+    console.log(this.url + "/delete/" + threadid);
+    return this.http.delete<Community>(this.url + "/delete/" + threadid + "/" + comid);
   }
 }

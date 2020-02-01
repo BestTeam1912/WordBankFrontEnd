@@ -14,8 +14,6 @@ export class CommunityComponent implements OnInit {
   private addCommunityBool: boolean;
   private addCom: Community;
 
-  
-
   constructor(private service:CommunityService) { 
     this.addCommunityBool=false;
     this.addCom = new Community();
