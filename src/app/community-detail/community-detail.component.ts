@@ -41,14 +41,10 @@ export class CommunityDetailComponent implements OnInit {
 
   addNewThread(){
     this.addThread.dateCreated=new Date();
-    this.serviceThread.createThread(this.addThread).subscribe(data => this.com.threads.push(data));
+    // this.serviceThread.createThread(this.addThread).subscribe(data => this.addThread = data);
+    // this.com.threads.push(this.addThread);
+    this.service.updateCommunity(this.com.id, this.addThread).subscribe(data => this.com = data);
     this.addThreadBool=!this.addThreadBool;
-
-  }
-
-  deleteCommunity(){
-    this.service.deleteCommunity(this.com).subscribe();
-    this.router.navigate(['/community']);
   }
 
 }
