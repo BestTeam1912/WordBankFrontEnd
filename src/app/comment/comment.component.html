@@ -12,7 +12,7 @@
 		
 		<span class="float-right mr-3">username | 
 			CharBank: # | 
-			{{comment.dateCreated.toString()}}</span>
+			{{comment.dateCreated | date:'medium'}}</span>
 		<input type="hidden" [value]="[comment.id]"/>
 		<button type="button" (click)="replyToThisComment()">reply</button>
 	</div>
@@ -20,8 +20,8 @@
 		<div class="row">
 			<div class="col-sm-1"></div>
 			<div class="col-sm-8">
-				<textarea *ngIf="!(reply.isValidComment())" class="text-warning m-3 container" [(ngModel)]="reply.text">{{comment.text}}</textarea>
-				<textarea *ngIf="reply.isValidComment()" class="m-3 container" [(ngModel)]="reply.text">{{reply.text}}</textarea>
+				
+				<textarea class="m-3 container" [(ngModel)]="reply.text">{{reply.text}}</textarea>
 				<div class="btn-group btn-group-sm float-right m-1">
 					<button type="button" class="btn btn-primary"(click)="post()">Post Reply</button>
 					<button type="button" class="btn btn-primary" (click)="cancel()">Cancel</button>
