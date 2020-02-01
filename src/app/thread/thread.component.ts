@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Thread } from './classes/thread.class';
 import { User } from './classes/user.class';
+import { Community } from '../community/classes/community.class';
 
 @Component({
   selector: 'app-thread',
@@ -9,6 +10,7 @@ import { User } from './classes/user.class';
 })
 export class ThreadComponent implements OnInit {
   @Input() thread:Thread; 
+  @Input() community: Community;
   constructor() {
     // this.thread = new Thread();
     // This is just for testing remove when you have a service.

@@ -20,16 +20,9 @@ export class CommentComponent implements OnInit {
 		this.comment.replies = [];
 		this.reply = new Comment();
 		this.reply.text = "";
-		// this.comment.id = 10;
 		this.comment.dateCreated = new Date;
 		console.log(this.comment.dateCreated.toString);
 		this.comment.text = "some text like the quick red fox jumped over the white picket fence"
-		// let user = new User();
-		// user.password = "pass";
-		// user.username = "user";
-		// let activeuser = new ActiveUser();
-		// activeuser.dateCreated = new Date();
-		// activeuser.user = user;
 		this.service.addComment(this.comment)
 			.subscribe(res=>{
 				this.comment = res;
@@ -51,12 +44,7 @@ export class CommentComponent implements OnInit {
 	}
 
 	post(){
-		//this.reply.activeUser = new ActiveUser();
 		this.reply.dateCreated = new Date();
-
-		// this.reply.replyingTo = this.comment;
-		// this.reply.thread = this.comment.thread;
-		// this.reply.text = document.getElementById("texts").value;
 		if(this.reply.isValidComment()){
 			this.service.addComment(this.reply).subscribe(res=>{
 				this.reply = res;
