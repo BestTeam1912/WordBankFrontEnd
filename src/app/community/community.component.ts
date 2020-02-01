@@ -38,6 +38,7 @@ export class CommunityComponent implements OnInit {
   addNewCommunity(){
     this.addCom.dateCreated=new Date();
     this.service.addCommunity(this.addCom).subscribe(data => this.communities.push(data));
+    this.addCom = new Community();
     this.addCommunityBool=!this.addCommunityBool;
   }
 
