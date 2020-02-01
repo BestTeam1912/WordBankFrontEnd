@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
        console.log(this.cuser.username);
      })
      if(this.cuser.username === "login confirmed"){
-      window.alert("User was registered successfully, you can now log in");
+      window.alert("you have logged in successfully");
     }else if(this.cuser.username === "no match" || this.cuser.username === "user not found"){
       window.alert("Your credentials are incorrect, please try again");
     }
