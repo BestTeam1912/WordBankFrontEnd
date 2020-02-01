@@ -14,6 +14,7 @@ export class CommunityComponent implements OnInit {
   private addCommunityBool: boolean;
   private addCom: Community;
 
+  
 
   constructor(private service:CommunityService) { 
     this.addCommunityBool=false;
@@ -40,7 +41,10 @@ export class CommunityComponent implements OnInit {
     this.addCommunityBool=!this.addCommunityBool;
   }
 
-
+  deleteCommunity(deleteCom: Community){
+    this.communities = this.communities.filter(h => h !== deleteCom);
+    this.service.deleteCommunity(deleteCom).subscribe();
+  }
 
   // delete(animal: Animal): void {
   //   this.animals = this.animals.filter(h => h !== animal);

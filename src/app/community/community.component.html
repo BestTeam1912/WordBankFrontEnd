@@ -48,14 +48,22 @@
   <div class="col-2"></div>
   <div class="col-8">
     <div class="list-group">
-      <a *ngFor="let com of communities" routerLink="/community/{{com.title}}"
+      <a *ngFor="let com of communities" 
       class="list-group-item list-group-item-action flex-column align-items-start">
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1">relpy/{{com.title}}</h5>
-          <small class="text-muted">{{com.dateCreated | date:'medium' }}</small>
+          <button class="btn" (click)="deleteCommunity(com)">Delete</button>
           <!-- <button class="delete" title="delete animal" (click)="delete(animal)">x</button> -->
         </div>
-        <p class="mb-1">{{com.description}}</p>
+        <div class="d-flex w-100 justify-content-between">
+          <p class="mb-1">{{com.description}}</p>
+          <small class="text-muted">{{com.dateCreated | date:'medium' }}</small>
+        </div>
+        <!-- <div a class = "card-link" routerLink="/community/{{com.title}}">
+          <small class="text-muted">Press here to go to community.</small>
+        </div> -->
+        <a routerLink="/community/{{com.title}}" class="card-link">Press here to go to community.</a>
+
         <!-- <small class="text-muted">Donec id elit non mi porta.</small> -->
       </a>
     </div>

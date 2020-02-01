@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Thread } from './thread/classes/thread.class';
 import { HttpClient} from "@angular/common/http";
 import { Observable, of } from 'rxjs';
+import { Community } from './community/classes/community.class';
 
 @Injectable({
   providedIn: 'root'
