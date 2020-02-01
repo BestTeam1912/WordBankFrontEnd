@@ -26,26 +26,23 @@ export class ThreadService {
   findById(id:number):Observable<Thread>{
     return this.http.get<Thread>(this.url + "/get/" + id);
   }
-  
-  removeById(id:number){
-    this.threads = this.threads.filter( t => {
-      t.id != id;
-    });
-  }
 
   findCommentsByThread(threadId:number):Observable<Comment[]>{
     return this.http.get<Comment[]>(this.url + "/get/comments/" + threadId);
   }
 
   addComment(thread:Thread, comment:Comment):Observable<Comment>{
+    comment.dateCreated = new Date();
     return this.http.post<Comment>(this.url + "/add/comment/" + thread.id, comment);
   }
 
-
+  replyComment(thread:Thread, comment:Comment, reply:Comment):Observable<Comment>{
+    reply.dateCreated = new Date();
+    return this.http.post<Comment>(this.url + "/reply/" + thread.id + "/" + comment.id, reply);
+  }
 
   createThread(thread:Thread):Observable<Thread>{
     return this.http.post<Thread>(this.url + "/add", thread);
-
   }
 
   updateThread(thread:Thread){
