@@ -1,8 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { EventEmitter, Component, OnInit, Input, Output } from '@angular/core';
 import { Comment } from './class/comment';
 import { User } from '../thread/classes/user.class';
 import { ActiveUser } from './class/active-user';
 import { CommentService } from '../comment.service';
+import { ThreadService } from '../thread.service';
+import { Thread } from '../thread/classes/thread.class';
 
 @Component({
   selector: 'app-comment',
@@ -10,17 +12,20 @@ import { CommentService } from '../comment.service';
   styleUrls: ['./comment.component.css']
 })
 export class CommentComponent implements OnInit {
+	@Input() private thread:Thread;
 	@Input() private comment: Comment;
-	private reply: Comment;
+	@Input() private reply: Comment;
+	@Output() private commentListEmitter:EventEmitter<boolean>;
 	private wantToReply: boolean;
-	constructor(private service:CommentService) {
+	constructor(private service:CommentService, private threadService:ThreadService) {
 		this.wantToReply = false;
 		this.comment = new Comment();
 		this.comment.text = "";
 		this.comment.replies = [];
 		this.reply = new Comment();
 		this.reply.text = "";
-		this.comment.dateCreated = new Date;
+		this.comment.dateCreated = new Date();
+		this.commentListEmitter = new EventEmitter<boolean>();
 	}
 
 	setComment(comment: Comment){
@@ -29,6 +34,13 @@ export class CommentComponent implements OnInit {
 
 	replyToThisComment(){
 		this.wantToReply = !this.wantToReply;
+	}
+
+	postReply(posted:boolean){
+		this.threadService.replyComment(this.thread, this.comment, this.reply).subscribe( data => {
+			this.commentListEmitter.emit(posted);
+		});
+		this.cancel();
 	}
 
 	cancel(){

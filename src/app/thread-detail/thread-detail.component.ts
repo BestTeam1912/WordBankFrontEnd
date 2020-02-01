@@ -16,10 +16,12 @@ export class ThreadDetailComponent implements OnInit {
   private addCommentToggle:boolean
   private comments:Comment[];
   private comment:Comment;
+  private reply:Comment;
   constructor(private threadService:ThreadService, private commentService:CommentService ,private router:Router, private route:ActivatedRoute) {
     this.thread = new Thread();
     this.comments = [];
     this.comment = new Comment();
+    this.reply = new Comment();
   }
 
   toggleAddingComments(){
@@ -31,12 +33,30 @@ export class ThreadDetailComponent implements OnInit {
   }
 
   postComment(){
-    this.threadService.addComment(this.thread, this.comment).subscribe();
-    this.closeAddingComments()
+    this.threadService.addComment(this.thread, this.comment).subscribe( data => {
+      this.refreshComments();
+    });
+    this.closeAddingComments();
+    this.comment = new Comment();
   }
 
-  refreshComment(){
-    this.threadService.findCommentsByThread(this.thread.id).subscribe( comments => this.comments = comments )
+  replyComment(){
+    this.threadService.replyComment(this.thread ,this.comment, this.reply).subscribe( data => {
+      this.refreshComments();
+    } );
+    this.reply = new Comment();
+  }
+
+  refreshComments(){
+    this.threadService.findCommentsByThread(this.thread.id).subscribe( comments => {
+      this.comments = comments;
+    })
+  }
+
+  refreshReplies(replyPosted:boolean){
+    this.threadService.findCommentsByThread(this.thread.id).subscribe( comments => {
+      this.comments = comments;
+    })
   }
 
   ngOnInit() {
