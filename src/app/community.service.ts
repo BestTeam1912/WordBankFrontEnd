@@ -33,10 +33,13 @@ export class CommunityService {
     return this.http.post<Community>(this.url + "/add", com);
   }
 
-  public deleteCommunity(com:Community){
-    console.log(com);
+  deleteCommunity(com:Community){
+    console.log(this.url + "/delete/" + com.id);
     return this.http.delete<Community>(this.url + "/delete/" + com.id);
   }
 
+  public updateCommunity(comid:number, thread: Thread){
+    return this.http.put<Community>(this.url + "/update/" + comid, thread);
+  }
 
 }
