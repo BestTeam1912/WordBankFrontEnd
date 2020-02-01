@@ -12,7 +12,7 @@
 		
 		<span class="float-right mr-3">username | 
 			CharBank: # | 
-			{{comment.dateCreated.toString()}}</span>
+			{{comment.dateCreated | date:'medium'}}</span>
 		<input type="hidden" [value]="[comment.id]"/>
 		<button type="button" (click)="replyToThisComment()">reply</button>
 	</div>

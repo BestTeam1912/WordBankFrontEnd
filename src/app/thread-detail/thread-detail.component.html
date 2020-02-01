@@ -4,3 +4,39 @@
     <p>{{thread.description}}</p>
   </div>
 </div>
+
+<div class="row">
+  <div class="col-2"></div>
+    <div class="col-8">
+
+      <div *ngIf="!addCommentToggle">
+        <button id = "div-add-button" type="button" class="btn btn-primary btn-block" (click)="toggleAddingComments()">Post Comment</button>
+      </div>
+      <form *ngIf="addCommentToggle">
+        <h4>Post Comment</h4>
+
+        <button type="button" class="close" (click)="closeAddingComments()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+        <div class="mb-3">
+          <label for="addComment"></label>
+          <textarea class="form-control"  id="addComment" rows="3"
+          placeholder="Enter Comment Here..." [(ngModel)]="comment.text" 
+          [ngModelOptions]="{standalone: true}"></textarea>
+          <div class="add-thread-validation-message"></div>
+        </div> 
+        <div class="mb-3">
+          <button type="button" class="btn btn-primary btn-block" (click)="postComment()">Post Comment</button>
+        </div>
+      </form>
+      <div class="mt-3 mb-3">
+        <button type="button" class="btn btn-secondary btn-block" (click)="refreshComment()">Update Comments</button>
+      </div>
+    </div>
+    <div class="col-2">
+    </div>
+  </div>
+<div *ngIf="comments" class="container">
+  <app-comment *ngFor="let comment of comments" [comment]="comment" ></app-comment>
+</div>
