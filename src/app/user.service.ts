@@ -11,7 +11,7 @@ export class UserService {
 
   private url:string;
 
-  constructor(private http:HttpClient) {
+  constructor(private http:HttpClient) {  
     this.url="http://localhost:9000/";
    }
 
@@ -22,7 +22,8 @@ export class UserService {
    }
 
    public registerUser(user:User):Observable<User>{
-     return this.http.post<User>(this.url, user);
+     console.log(this.url)
+     return this.http.post<User>(this.url+"register", user);
    }
 
    public registerAdmin(user:User):Observable<User>{
