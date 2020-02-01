@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Comment } from './class/comment';
 import { User } from '../thread/classes/user.class';
 import { ActiveUser } from './class/active-user';
@@ -10,7 +10,7 @@ import { CommentService } from '../comment.service';
   styleUrls: ['./comment.component.css']
 })
 export class CommentComponent implements OnInit {
-	private comment: Comment;
+	@Input() private comment: Comment;
 	private reply: Comment;
 	private wantToReply: boolean;
 	constructor(private service:CommentService) {
