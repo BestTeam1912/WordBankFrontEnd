@@ -23,7 +23,7 @@ export class ThreadService {
   }
 
   findById(id:number):Observable<Thread>{
-    return of(this.threads.find( t => t.id === id ));
+    return this.http.get<Thread>(this.url + "/get/" + id);
   }
   
   removeById(id:number){
@@ -32,8 +32,14 @@ export class ThreadService {
     });
   }
 
+  findCommentsByThread(thread:Thread){
+    // Get All Commends based on thread
+  }
+
+
   createThread(thread:Thread):Observable<Thread>{
     return this.http.post<Thread>(this.url + "/add", thread);
+
   }
 
   updateThread(thread:Thread){
