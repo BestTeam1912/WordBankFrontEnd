@@ -21,13 +21,6 @@ export class CommentComponent implements OnInit {
 		this.reply = new Comment();
 		this.reply.text = "";
 		this.comment.dateCreated = new Date;
-		console.log(this.comment.dateCreated.toString);
-		this.comment.text = "some text like the quick red fox jumped over the white picket fence"
-		this.service.addComment(this.comment)
-			.subscribe(res=>{
-				this.comment = res;
-				console.log(this.comment);
-			});
 	}
 
 	setComment(comment: Comment){
@@ -69,12 +62,13 @@ export class CommentComponent implements OnInit {
 			"going through, So I will just type a little more to confirm then"+
 			" copy and paste";
 		}
-		
-		// this.comment.replies.push(this.reply);
-		console.log(this.reply);
 	}
 
 	ngOnInit() {
+		this.service.addComment(this.comment)
+			.subscribe(res=>{
+				this.comment = res;
+			});
 	}
 
 }

@@ -32,7 +32,11 @@ export class ThreadDetailComponent implements OnInit {
 
   postComment(){
     this.threadService.addComment(this.thread, this.comment).subscribe();
-    this.threadService.findCommentsByThread(this.thread.id).subscribe( comments => this.comments = comments);
+    this.closeAddingComments()
+  }
+
+  refreshComment(){
+    this.threadService.findCommentsByThread(this.thread.id).subscribe( comments => this.comments = comments )
   }
 
   ngOnInit() {
