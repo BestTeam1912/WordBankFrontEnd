@@ -17,6 +17,7 @@ export class CommunityComponent implements OnInit {
   constructor(private service:CommunityService) { 
     this.addCommunityBool=false;
     this.addCom = new Community();
+    this.communities = [];
   }
 
   ngOnInit() {
