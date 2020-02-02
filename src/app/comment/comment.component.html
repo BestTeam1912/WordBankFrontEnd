@@ -14,8 +14,7 @@
 		</div>
 		<p class="py-1">{{comment.text}}</p>
 		
-		<span class="float-right mr-3">username | 
-			CharBank: # | 
+		<span class="float-right mr-3">{{comment.user.username}} | 
 			{{comment.dateCreated | date:'medium'}} | Comment Id: {{comment.id}}</span>
 		<input type="hidden" [value]="[comment.id]"/>
 		<button type="button" (click)="replyToThisComment()">reply</button>
