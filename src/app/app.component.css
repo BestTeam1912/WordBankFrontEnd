@@ -2,3 +2,9 @@ ul li{
     display: inline-block;
     padding: 5px;
 }
+
+
+
+.navbar-brand{
+    background-color: hsl(47, 83, 88) !important;
+}
