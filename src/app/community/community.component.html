@@ -9,7 +9,8 @@
   <div class="col-2"></div>
     <div class="col-8">
 
-      <button id = "div-add-button" type="button" class="btn btn-primary" (click)="changeCommunityBool()">Add Community</button>
+      <button id = "div-add-button" type="button" *ngIf="user.type = 'Admin'"
+      class="btn btn-primary" (click)="changeCommunityBool()">Add Community</button>
 
       <form class="add-community" *ngIf="addCommunityBool">
         <h4>Add Community</h4>
