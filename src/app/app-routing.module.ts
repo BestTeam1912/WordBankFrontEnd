@@ -7,6 +7,7 @@ import { ThreadDetailComponent } from './thread-detail/thread-detail.component';
 import { CommunityComponent } from './community/community.component';
 import { CommunityDetailComponent } from './community-detail/community-detail.component';
 import { CommentComponent } from './comment/comment.component';
+import { AuthGuardService } from './auth-guard.service';
 
 
 const routes: Routes = [
@@ -14,7 +15,7 @@ const routes: Routes = [
   {path:"register", component:RegisterComponent },
   {path:"thread", component:ThreadComponent },
   {path:"thread-detail", component:ThreadDetailComponent },
-  {path:"community", component:CommunityComponent },
+  {path:"community", component:CommunityComponent, canActivate:[AuthGuardService] },
   {path:"community-detail", component:CommunityDetailComponent },
   {path:"comment", component:CommentComponent },
   {path: 'community/:title', component: CommunityDetailComponent },
