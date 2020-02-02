@@ -17,7 +17,6 @@ export class CommunityService {
     this.url="http://localhost:9000/community";
   }
   public getCommunityByTitle(title:string){
-    console.log(this.http.get<Community>(this.url + "/" + title));
     return this.http.get<Community>(this.url + "/" + title);
   }
 
@@ -34,7 +33,6 @@ export class CommunityService {
   }
 
   deleteCommunity(com:Community){
-    console.log(this.url + "/delete/" + com.id);
     return this.http.delete<Community>(this.url + "/delete/" + com.id);
   }
 

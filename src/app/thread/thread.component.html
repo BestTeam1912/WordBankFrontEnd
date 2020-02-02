@@ -9,7 +9,10 @@
         </div>
         
         <!-- <p class="card-subtitle">{{thread.user.username}}</p> -->
-        <div class="card-text">{{thread.description}}</div>
+        <div class="card-text d-flex w-100 justify-content-between">
+            {{thread.description}}
+            <small class="text-muted">{{thread.dateCreated | date:'medium' }}</small>
+        </div>
     </div>
     <div class="card-footer">
         <a routerLink="/community/{{community.title}}/{{thread.id}}" class="card-link">Click Here To View Thread</a>
