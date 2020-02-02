@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { User } from "./user";
 import { Status } from "./status";
+import { Sesh } from "./sesh";
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,10 @@ export class UserService {
 
    public registerAdmin(user:User):Observable<User>{
     return this.http.post<User>(this.url+"register/admin", user);
+  }
+
+  public getSessionId():Observable<Sesh>{
+    return this.http.get<Sesh>(this.url+"login/sid")
   }
 
 }

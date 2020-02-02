@@ -44,7 +44,12 @@ export class CommunityDetailComponent implements OnInit {
     // this.serviceThread.createThread(this.addThread).subscribe(data => this.addThread = data);
     // this.com.threads.push(this.addThread);
     this.service.updateCommunity(this.com.id, this.addThread).subscribe(data => this.com = data);
+    this.addThread=new Thread();
     this.addThreadBool=!this.addThreadBool;
+  }
+
+  refreshThreads(deleteBool:boolean){
+    this.getCommunityByTitle();
   }
 
 }

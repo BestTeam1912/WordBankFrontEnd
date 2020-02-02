@@ -46,9 +46,4 @@ export class CommunityComponent implements OnInit {
     this.service.deleteCommunity(deleteCom).subscribe();
   }
 
-  // delete(animal: Animal): void {
-  //   this.animals = this.animals.filter(h => h !== animal);
-  //   this.service.deleteAnimal(animal).subscribe();
-  // }
-
 }
