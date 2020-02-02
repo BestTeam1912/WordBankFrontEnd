@@ -13,13 +13,11 @@ import { AuthGuardService } from './auth-guard.service';
 const routes: Routes = [
   {path:"login", component:LoginComponent },
   {path:"register", component:RegisterComponent },
-  {path:"thread", component:ThreadComponent },
-  {path:"thread-detail", component:ThreadDetailComponent },
+  {path:"thread-detail", component:ThreadDetailComponent, canActivate:[AuthGuardService] },
   {path:"community", component:CommunityComponent, canActivate:[AuthGuardService] },
-  {path:"community-detail", component:CommunityDetailComponent },
-  {path:"comment", component:CommentComponent },
-  {path: 'community/:title', component: CommunityDetailComponent },
-  {path: "community/:title/:threadId", component: ThreadDetailComponent }
+  {path:"community-detail", component:CommunityDetailComponent, canActivate:[AuthGuardService] },
+  {path: 'community/:title', component: CommunityDetailComponent, canActivate:[AuthGuardService] },
+  {path: "community/:title/:threadId", component: ThreadDetailComponent, canActivate:[AuthGuardService] }
 
 ];
 

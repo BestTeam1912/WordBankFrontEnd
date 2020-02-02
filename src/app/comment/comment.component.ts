@@ -5,6 +5,7 @@ import { ActiveUser } from './class/active-user';
 import { CommentService } from '../comment.service';
 import { ThreadService } from '../thread.service';
 import { Thread } from '../thread/classes/thread.class';
+import { SessionService } from '../session.service';
 
 @Component({
   selector: 'app-comment',
@@ -17,7 +18,9 @@ export class CommentComponent implements OnInit {
 	@Input() private reply: Comment;
 	@Output() private commentListEmitter:EventEmitter<boolean>;
 	private wantToReply: boolean;
-	constructor(private service:CommentService, private threadService:ThreadService) {
+	constructor(private service:CommentService, 
+		private threadService:ThreadService,
+		private sessionService:SessionService) {
 		this.wantToReply = false;
 		this.comment = new Comment();
 		this.comment.text = "";
@@ -37,10 +40,13 @@ export class CommentComponent implements OnInit {
 	}
 
 	postReply(posted:boolean){
-		this.threadService.replyComment(this.thread, this.comment, this.reply).subscribe( data => {
-			this.commentListEmitter.emit(posted);
-		});
-		this.cancel();
+		if(this.sessionService.verifySession()){
+			this.reply.user = this.sessionService.getSessionUser();
+			this.threadService.replyComment(this.thread, this.comment, this.reply).subscribe( data => {
+				this.commentListEmitter.emit(posted);
+			});
+			this.cancel();
+		}
 	}
 
 	cancel(){

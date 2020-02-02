@@ -4,6 +4,7 @@ import { Thread } from '../thread/classes/thread.class';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CommentService } from '../comment.service';
 import { Comment } from '../comment/class/comment';
+import { SessionService } from '../session.service';
 
 
 @Component({
@@ -17,7 +18,11 @@ export class ThreadDetailComponent implements OnInit {
   private comments:Comment[];
   private comment:Comment;
   private reply:Comment;
-  constructor(private threadService:ThreadService, private commentService:CommentService ,private router:Router, private route:ActivatedRoute) {
+  constructor(private threadService:ThreadService, 
+    private commentService:CommentService ,
+    private sessionService:SessionService,
+    private router:Router, 
+    private route:ActivatedRoute) {
     this.thread = new Thread();
     this.comments = [];
     this.comment = new Comment();
@@ -33,18 +38,24 @@ export class ThreadDetailComponent implements OnInit {
   }
 
   postComment(){
-    this.threadService.addComment(this.thread, this.comment).subscribe( data => {
-      this.refreshComments();
-    });
-    this.closeAddingComments();
-    this.comment = new Comment();
+    if(this.sessionService.verifySession()){
+      this.comment.user = this.sessionService.getSessionUser();
+      this.threadService.addComment(this.thread, this.comment).subscribe( data => {
+        this.refreshComments();
+      });
+      this.closeAddingComments();
+      this.comment = new Comment();
+    }
   }
 
   replyComment(){
-    this.threadService.replyComment(this.thread ,this.comment, this.reply).subscribe( data => {
-      this.refreshComments();
-    } );
-    this.reply = new Comment();
+    if(this.sessionService.verifySession()){
+      this.reply.user = this.sessionService.getSessionUser();
+      this.threadService.replyComment(this.thread ,this.comment, this.reply).subscribe( data => {
+        this.refreshComments();
+      });
+      this.reply = new Comment();
+    }
   }
 
   refreshComments(){
