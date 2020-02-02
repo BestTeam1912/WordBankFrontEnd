@@ -1,7 +1,5 @@
 import { EventEmitter, Component, OnInit, Input, Output } from '@angular/core';
 import { Comment } from './class/comment';
-import { User } from '../thread/classes/user.class';
-import { ActiveUser } from './class/active-user';
 import { CommentService } from '../comment.service';
 import { ThreadService } from '../thread.service';
 import { Thread } from '../thread/classes/thread.class';
