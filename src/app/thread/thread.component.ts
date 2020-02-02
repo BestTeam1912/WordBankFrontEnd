@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Thread } from './classes/thread.class';
-import { User } from './classes/user.class';
 import { Community } from '../community/classes/community.class';
 import { ThreadService } from '../thread.service';
+import { User } from '../user';
+import { SessionService } from '../session.service';
 
 @Component({
   selector: 'app-thread',
@@ -13,8 +14,10 @@ export class ThreadComponent implements OnInit {
   @Input() thread:Thread; 
   @Input() community: Community;
   @Output() private deleteEmitter:EventEmitter<boolean>;
+  private user: User;
 
-  constructor(private threadService: ThreadService) {
+  constructor(private threadService: ThreadService,
+    private sessionService: SessionService) {
     // this.thread = new Thread();
     // This is just for testing remove when you have a service.
     // this.thread.title = "Look at this game!!!";
@@ -25,6 +28,7 @@ export class ThreadComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.user = this.sessionService.getSessionUser();
   }
 
   deleteThread(thread: Thread, deleteBool:boolean){

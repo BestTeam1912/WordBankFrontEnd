@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Community } from './classes/community.class';
 import { CommunityService } from '../community.service';
+import { SessionService } from '../session.service';
+import { User } from '../user';
 
 
 
@@ -13,8 +15,10 @@ export class CommunityComponent implements OnInit {
   communities : Community[];
   private addCommunityBool: boolean;
   private addCom: Community;
+  private user: User;
 
-  constructor(private service:CommunityService) { 
+  constructor(private service:CommunityService,
+    private sessionService: SessionService) { 
     this.addCommunityBool=false;
     this.addCom = new Community();
     this.communities = [];
@@ -22,6 +26,7 @@ export class CommunityComponent implements OnInit {
 
   ngOnInit() {
     this.getCommunities();
+    this.user = this.sessionService.getSessionUser();
   }
 
   getCommunities(): void {
