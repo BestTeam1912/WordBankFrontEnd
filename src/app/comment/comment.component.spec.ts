@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 
 import { CommentComponent } from './comment.component';
 
@@ -19,7 +19,7 @@ describe('CommentComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  it('should create', inject([CommentComponent],(comment: CommentComponent) => {
+    expect(comment).toBeTruthy();
+  }));
 });
