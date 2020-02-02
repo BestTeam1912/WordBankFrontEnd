@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { User } from '../user';
+import { Sesh } from '../sesh';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +12,7 @@ export class LoginComponent implements OnInit {
 
   private user: User;
   private cuser: User;
+  private sesh: Sesh;
   constructor(private service: UserService) {
     this.user = new User();
   }
@@ -23,10 +25,18 @@ export class LoginComponent implements OnInit {
       } else {
         window.alert("Your credentials are incorrect, please try again");
       }
-      console.log(this.cuser.type);
       this.cuser.password="";
       sessionStorage.setItem("user", JSON.stringify(this.cuser));
-      console.log(sessionStorage.getItem("id"));
+      // this.getSessionId();
+      this.service.getSessionId().subscribe(res=>{
+        this.sesh = res;
+        sessionStorage.setItem("seshId", JSON.stringify(this.sesh));
+        console.log(this.sesh)
+      }, err => {
+        console.log(err);
+      })
+      // console.log(sessionStorage.getItem("user"));
+      // console.log(sessionStorage.getItem("seshId"));
     })
     
   }
