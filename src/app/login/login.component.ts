@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
 
   private user: User;
   private cuser: User;
+  private suser: User;
   private sesh: Sesh;
   constructor(private service: UserService) {
     this.user = new User();
@@ -31,7 +32,9 @@ export class LoginComponent implements OnInit {
       this.service.getSessionId().subscribe(res=>{
         this.sesh = res;
         sessionStorage.setItem("seshId", JSON.stringify(this.sesh));
-        console.log(this.sesh)
+        this.suser = JSON.parse(sessionStorage.getItem("user"));
+        console.log(this.suser.username);
+        console.log(this.suser.type);
       }, err => {
         console.log(err);
       })

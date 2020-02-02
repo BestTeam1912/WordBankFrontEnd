@@ -1,3 +1,27 @@
+.col-sm{
+    background-color: rgb(187, 74, 74);
+    max-width: 500px;
+    border: hsl(185, 12, 36);
+}
+.border{
+    background-color: hsl(185, 12, 36);
+}
+.navbar{
+    background-color: rgb(80, 90, 91);   
+}
+
+.nav{
+    display:flex;
+}
+
+.container{
+    justify-content: flex-end;
+}
 .btn-toolbar{
     justify-content: center;
 }
+
+
+
+
+
