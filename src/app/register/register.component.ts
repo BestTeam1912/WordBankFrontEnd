@@ -23,12 +23,12 @@ export class RegisterComponent implements OnInit {
      this.service.registerUser(this.user).subscribe(res=>{
        this.cuser = res;
        console.dir(this.cuser.username);
+       if(this.cuser.username != "taken"){
+        window.alert("User was registered successfully, you can now log in");
+      }else{
+        window.alert("There was an error, please try again");
+      }
      });
-     if(this.cuser.username != "taken"){
-       window.alert("User was registered successfully, you can now log in");
-     }else{
-       window.alert("There was an error, please try again");
-     }
    }
 
    registerAdmin(){

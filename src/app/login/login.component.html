@@ -1,3 +1,32 @@
+<!-- <nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar header">
+          <a class="navbar-brand" href="#">WebSiteName</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="acvitve">Home</li>
+            <li>Register</li>
+            <li>Sign in</li>
+        </ul>
+    </div>
+  </nav> -->
+  <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Expand at xl</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample06" aria-controls="navbarsExample06" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
         <h1 align="center">Relpy</h1>
@@ -6,9 +35,50 @@
 </div>
 <div class="container">
     <div class="row">
+        <div class="col"></div>
+        <div class="col-sm rounded" id="login">
+            <!-- <div class="d-flex justify-content-center">
+                <Label>Enter your credentials to log in</Label>
+                <br>
+            </div>
+            <div class="d-flex justify-content-start">
+                <label>Username</label>
+            </div> -->
+            <div class="d-flex justify-content-center">
+            <Label>Enter your credentials to log in</Label>
+            </div>
+            <div class="d-flex justify-content-center">
+            <label>Username</label>
+            </div>
+            <div class="d-flex justify-content-center">
+            <input type="text" [(ngModel)]="user.username" class="username" placeholder="Enter Username">
+            </div>
+            <br>
+            <div class="d-flex justify-content-center">
+            <label>Password</label>
+            </div>
+            <div class="d-flex justify-content-center">
+            <input type="password" [(ngModel)]="user.password" class="password" placeholder="Enter Password">
+            </div>
+            <br>
+            <div class="btn-toolbar" role="toolbar">
+                <div class="btn-group mr-2" role="group">
+                    <button type="button" (click)="login()" class="btn btn-dark">Login</button>
+                </div>
+                <div class="btn-group mr-2" role="group">
+                    <button type="button" class="btn btn-dark"><a routerLink="/register">Register</a></button>
+                </div>
+            </div>
+            <br>
+            <br>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+<!-- <div class="container">
+    <div class="row">
         <div class="col-12">
-            <div class="col-xs-4"></div>
-            <div class="col-xs-4" align="center" style="background-color:hsl(184, 86%, 31%)">
+            <div class="col-12" class="rounded" align="center" style="background-color:hsl(184, 86%, 31%)">
                 <Label>Enter your credentials to log in</Label>
                 <br>
                 <label>Username</label>
@@ -31,7 +101,6 @@
                 <br>
                 <br> 
             </div>
-            <div class="col-xs-4"></div>
         </div>
     </div>
-</div>
+</div> -->
