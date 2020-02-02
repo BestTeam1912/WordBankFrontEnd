@@ -48,7 +48,6 @@ export class ThreadService {
   }
 
   deleteThread(threadid:number, comid:number){
-    console.log(this.url + "/delete/" + threadid);
     return this.http.delete<Community>(this.url + "/delete/" + threadid + "/" + comid);
   }
 }
