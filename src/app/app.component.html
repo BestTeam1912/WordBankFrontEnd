@@ -1,5 +1,17 @@
+<nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Relpy</a>
+  <div class="collapse navbar-collapse" >
+    <ul class="navbar-nav mr-auto">
+      <div *ngIf="loggedIn">
+        <li  class="nav-item" (click)="logout()" >
+          <a class="nav-link" href="#">logout</a>
+        </li>
+      </div>
+    </ul>
+  </div>
+</nav>
 
-
+<div class="content"><span>Relpy</span></div>
 <ul>
   <li><a routerLink="/login">Login</a></li>
   <li><a routerLink="/register">Register</a></li>
