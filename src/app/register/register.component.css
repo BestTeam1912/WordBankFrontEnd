@@ -1,3 +1,17 @@
+.col-sm{
+    background-color: rgb(187, 74, 74);
+    max-width: 500px;
+    border: hsl(185, 12, 36);
+}
+
 .btn-toolbar{
     justify-content: center;
+}
+
+.nav{
+    display:flex;
+}
+
+.container{
+    justify-content: flex-end;
 }

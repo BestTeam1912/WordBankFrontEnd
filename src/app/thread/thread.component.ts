@@ -39,4 +39,12 @@ export class ThreadComponent implements OnInit {
 		});
   }
 
+  logout(){
+    this.sessionService.logout();
+  }
+
+  Community(){
+    this.sessionService.community();
+  }
+
 }

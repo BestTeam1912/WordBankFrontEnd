@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { SessionService } from './session.service'; 
-import { Sesh } from "./sesh";
+import { Sesh } from "./sesh";  
 
 
 @Component({

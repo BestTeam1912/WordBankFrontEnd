@@ -2,3 +2,7 @@
 body{
     background-color: rgb(192, 209, 216) !important ;
 }
+
+a{
+    cursor: pointer;
+}
