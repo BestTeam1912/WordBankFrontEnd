@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { SessionService } from './session.service'; 
+import { Sesh } from "./sesh";
+import { User } from './thread/classes/user.class';
+
 
 @Component({
   selector: 'app-root',
@@ -7,4 +11,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Relpy';
+  private loggedIn:Boolean = this.session.verifySession();
+  constructor(private session:SessionService){
+  }
+
+  logout(){
+    this.session.logout();
+  }
+
+  ngOnInit(){
+    console.log(this.loggedIn);
+    
+  }
 }
