@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
-import { User } from './thread/classes/user.class';
+
+
 import { Router } from "@angular/router";
+import { User } from './user';
+
 
 @Injectable({
   providedIn: 'root'

@@ -9,7 +9,8 @@
   <div class="col-2"></div>
     <div class="col-8">
 
-      <button id = "div-add-button" type="button" class="btn btn-primary" (click)="changeCommunityBool()">Add Community</button>
+      <button id = "div-add-button" type="button" *ngIf="user.type == 'Admin'"
+      class="btn btn-primary" (click)="changeCommunityBool()">Add Community</button>
 
       <form class="add-community" *ngIf="addCommunityBool">
         <h4>Add Community</h4>
@@ -52,7 +53,7 @@
       class="list-group-item list-group-item-action flex-column align-items-start">
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1">relpy/{{com.title}}</h5>
-          <button class="btn" (click)="deleteCommunity(com)">&times; Delete</button>
+          <button class="btn" *ngIf="user.type == 'Admin'" (click)="deleteCommunity(com)">&times; Delete</button>
           <!-- <button class="delete" title="delete animal" (click)="delete(animal)">x</button> -->
         </div>
         <div class="d-flex w-100 justify-content-between">
