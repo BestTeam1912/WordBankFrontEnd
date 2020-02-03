@@ -5,6 +5,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CommentService } from '../comment.service';
 import { Comment } from '../comment/class/comment';
 import { SessionService } from '../session.service';
+import { Moneymap } from '../moneymap.class';
+import { User } from '../user';
 
 
 @Component({
@@ -18,6 +20,9 @@ export class ThreadDetailComponent implements OnInit {
   private comments:Comment[];
   private comment:Comment;
   private reply:Comment;
+  private moneyMap:Moneymap;
+  private user:User;
+  private errorMessage:string;
   constructor(private threadService:ThreadService, 
     private commentService:CommentService ,
     private sessionService:SessionService,
@@ -27,6 +32,9 @@ export class ThreadDetailComponent implements OnInit {
     this.comments = [];
     this.comment = new Comment();
     this.reply = new Comment();
+    this.moneyMap = new Moneymap();
+    this.user = new User();
+    this.errorMessage = "";
   }
 
   toggleAddingComments(){
@@ -39,28 +47,51 @@ export class ThreadDetailComponent implements OnInit {
 
   postComment(){
     if(this.sessionService.verifySession()){
-      this.comment.user = this.sessionService.getSessionUser();
-      this.threadService.addComment(this.thread, this.comment).subscribe( data => {
-        this.refreshComments();
-      });
-      this.closeAddingComments();
-      this.comment = new Comment();
+      if(this.moneyMap.currency === 0){
+        this.errorMessage = "Insufficent Funds Cannot Post Comment";
+      }else{
+        this.comment.user = this.sessionService.getSessionUser();
+        this.threadService.addComment(this.thread, this.comment).subscribe( data => {
+          this.threadService.getUserCurrency(this.thread, this.user).subscribe( money => {
+            this.setMoneyMap(money);
+          });
+        }, err => {
+          this.errorMessage = err.error.message;
+        });
+        this.threadService.addUserToThread(this.thread, this.comment.user).subscribe( data => {
+          this.refreshComments();
+          this.comment = new Comment();
+        });
+        this.closeAddingComments();
+      }
     }
   }
 
-  replyComment(){
-    if(this.sessionService.verifySession()){
-      this.reply.user = this.sessionService.getSessionUser();
-      this.threadService.replyComment(this.thread ,this.comment, this.reply).subscribe( data => {
-        this.refreshComments();
-      });
-      this.reply = new Comment();
-    }
+  closeError(){
+    this.errorMessage ="";
   }
 
   refreshComments(){
     this.threadService.findCommentsByThread(this.thread.id).subscribe( comments => {
       this.comments = comments;
+      this.threadService.getUserCurrency(this.thread, this.user).subscribe( money => {
+        this.moneyMap.currency = money;
+      } )
+    })
+  }
+
+  displayError(message:string){
+    this.errorMessage = message;
+  }
+
+  setMoneyMap(money:number){
+    this.moneyMap.userId = this.user.id;
+    this.moneyMap.currency = money;
+  }
+
+  replySent(sent:boolean){
+    this.threadService.getUserCurrency(this.thread, this.user).subscribe( moneyMap => {
+      this.moneyMap.currency = moneyMap;
     })
   }
 
@@ -72,8 +103,16 @@ export class ThreadDetailComponent implements OnInit {
 
   ngOnInit() {
     const threadId = +this.route.snapshot.paramMap.get('threadId');
-    this.threadService.findById(threadId).subscribe( thread => this.thread = thread );
-    this.threadService.findCommentsByThread(threadId).subscribe( comments => this.comments = comments );
+    this.threadService.findById(threadId).subscribe( thread => {
+      this.thread = thread
+      this.user = this.sessionService.getSessionUser();
+      this.threadService.addUserToThread(this.thread, this.user).subscribe( data => {
+        this.threadService.getUserCurrency(this.thread, this.user).subscribe( money => {
+          this.setMoneyMap(money);
+        })
+      })
+      this.threadService.findCommentsByThread(threadId).subscribe( comments => this.comments = comments );
+    });
     this.addCommentToggle = false;
   }
 

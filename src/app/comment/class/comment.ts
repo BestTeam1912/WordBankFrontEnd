@@ -1,6 +1,4 @@
-import { Thread } from "../../thread/classes/thread.class";
-import { ActiveUser } from "./active-user";
-import { User } from 'src/app/thread/classes/user.class';
+import { User } from '../../user';
 
 
 export class Comment {

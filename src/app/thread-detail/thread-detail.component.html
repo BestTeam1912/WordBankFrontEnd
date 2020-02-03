@@ -12,6 +12,16 @@
       <div *ngIf="!addCommentToggle">
         <button id = "div-add-button" type="button" class="btn btn-primary btn-block" (click)="toggleAddingComments()">Post Comment</button>
       </div>
+      <div>
+        <button id = "div-add-button" type="button" class="btn btn-dark btn-block mt-3" (click)="refreshComments()">Refresh Comments</button>
+      </div>
+      <p class="badge badge-dark">Currency: {{moneyMap.currency}}</p>
+      <div *ngIf="errorMessage" class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{errorMessage}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span (click)="closeError()" aria-hidden="true">&times;</span>
+        </button>
+      </div>
       <form *ngIf="addCommentToggle">
         <h4>Post Comment</h4>
 
@@ -21,8 +31,8 @@
 
         <div class="mb-3">
           <label for="addComment"></label>
-          <textarea class="form-control"  id="addComment" rows="3"
-          placeholder="Enter Comment Here..." [(ngModel)]="comment.text" 
+          <textarea  class="form-control" id="addComment" rows="3"
+          placeholder="Enter Comment Here..." [(ngModel)]="comment.text"
           [ngModelOptions]="{standalone: true}"></textarea>
           <div class="add-thread-validation-message"></div>
         </div> 
@@ -35,5 +45,5 @@
     </div>
   </div>
 <div *ngIf="comments" class="container">
-  <app-comment *ngFor="let comment of comments" [thread]="thread" [reply]="reply" (commentListEmitter)="refreshReplies($event)" [comment]="comment" ></app-comment>
+  <app-comment *ngFor="let comment of comments" [thread]="thread" [reply]="reply" [moneyMap]="moneyMap" (replySent)="replySent()" (invalidFundsEmitter)="displayError($event)" (commentListEmitter)="refreshReplies($event)" [comment]="comment" ></app-comment>
 </div>
