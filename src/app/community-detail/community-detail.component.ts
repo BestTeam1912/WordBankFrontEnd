@@ -4,6 +4,7 @@ import { CommunityService } from '../community.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Thread } from '../thread/classes/thread.class';
 import { ThreadService } from '../thread.service';
+import { SessionService } from '../session.service';
 
 @Component({
   selector: 'app-community-detail',
@@ -19,7 +20,8 @@ export class CommunityDetailComponent implements OnInit {
   constructor(private service:CommunityService,
     private serviceThread:ThreadService,
     private route: ActivatedRoute,
-    private router:Router) {
+    private router:Router,
+    private session:SessionService) {
     this.com=new Community();
     this.addThread= new Thread();
    }
@@ -50,6 +52,14 @@ export class CommunityDetailComponent implements OnInit {
 
   refreshThreads(deleteBool:boolean){
     this.getCommunityByTitle();
+  }
+  
+  logout(){
+    this.session.logout();
+  }
+
+  community(){
+    this.session.community();
   }
 
 }

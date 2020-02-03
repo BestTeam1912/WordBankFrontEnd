@@ -1,3 +1,19 @@
+<nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+	<a class="navbar-brand" href="#">Relpy</a>
+	<div class="collapse navbar-collapse" >
+	  <ul class="navbar-nav mr-auto">
+		<div>
+		  <li  class="nav-item" (click)="logout()" >
+			<a class="nav-link" href="#">logout</a>
+		  </li>
+		</div>
+		<li  class="nav-item" (click)="community()" >
+			<a class="nav-link" href="#">community</a>
+		</li>
+	  </ul>
+	</div>
+  </nav>
+
 <div class="jumbotron jumbotron-fluid" routerLink="/community">
   <div class="container">
     <h1>relpy/{{com.title}}</h1>

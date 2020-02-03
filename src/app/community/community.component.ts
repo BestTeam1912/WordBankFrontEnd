@@ -51,4 +51,8 @@ export class CommunityComponent implements OnInit {
     this.service.deleteCommunity(deleteCom).subscribe();
   }
 
+  logout(){
+    this.sessionService.logout();
+  }
+
 }

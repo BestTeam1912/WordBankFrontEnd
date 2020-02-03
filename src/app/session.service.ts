@@ -24,4 +24,8 @@ export class SessionService {
     sessionStorage.clear();
     this.router.navigate((['/']));
   }
+
+  community(){
+    this.router.navigate(['/community']);
+  }
 }
