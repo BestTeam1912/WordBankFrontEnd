@@ -1,10 +1,11 @@
 import { TestBed, inject } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { SessionService } from './session.service';
 
 fdescribe('SessionService', () => {
 	beforeEach(() => TestBed.configureTestingModule({
-		imports:[],
+		imports:[RouterTestingModule],
 		providers:[SessionService]
 	}));
 
