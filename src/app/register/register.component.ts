@@ -20,15 +20,22 @@ export class RegisterComponent implements OnInit {
    registerUser(){
      console.log(this.user.username);
      console.log(this.user.password);
-     this.service.registerUser(this.user).subscribe(res=>{
-       this.cuser = res;
-       console.dir(this.cuser.username);
-       if(this.cuser.username != "taken"){
-        window.alert("User was registered successfully, you can now log in");
-      }else{
-        window.alert("There was an error, please try again");
-      }
-     });
+     if(this.user.username == null || this.user.password == null){
+       window.alert("Both username and password are required!")
+       this.user.username = null;
+       this.user.password = null;
+     }else{
+      this.service.registerUser(this.user).subscribe(res=>{
+        this.cuser = res;
+        console.dir(this.cuser.username);
+        if(this.cuser.username != "taken"){
+         window.alert("User was registered successfully, you can now log in");
+       }else{
+         window.alert("There was an error, please try again");
+       }
+      });
+     }
+     
    }
 
    registerAdmin(){
