@@ -101,6 +101,14 @@ export class ThreadDetailComponent implements OnInit {
     })
   }
 
+  logout(){
+    this.sessionService.logout();
+  }
+
+  Community(){
+    this.sessionService.community();
+  }
+
   ngOnInit() {
     const threadId = +this.route.snapshot.paramMap.get('threadId');
     this.threadService.findById(threadId).subscribe( thread => {

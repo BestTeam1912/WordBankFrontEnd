@@ -96,6 +96,14 @@ export class CommentComponent implements OnInit {
 		}
 	}
 
+	logout(){
+		this.sessionService.logout();
+	  }
+	
+	  community(){
+		this.sessionService.community();
+	  }
+
 	ngOnInit() {
 		this.service.addComment(this.comment)
 			.subscribe(res=>{

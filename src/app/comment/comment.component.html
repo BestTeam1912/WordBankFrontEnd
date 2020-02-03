@@ -1,4 +1,18 @@
-
+<nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+	<a class="navbar-brand" >Relpy</a>
+	<div class="collapse navbar-collapse" >
+	  <ul class="navbar-nav mr-auto">
+		<div>
+		  <li  class="nav-item" (click)="logout()" >
+			<a class="nav-link">logout</a>
+		  </li>
+		</div>
+		<li  class="nav-item" (click)="community()" >
+			<a class="nav-link" >community</a>
+		</li>
+	  </ul>
+	</div>
+  </nav>
 
 
 <div [id]="['comment#comment', comment.id]" class="card">
