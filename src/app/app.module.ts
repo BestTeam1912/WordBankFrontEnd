@@ -15,6 +15,7 @@ import { from } from 'rxjs';
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { HttpClientModule } from '@angular/common/http';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { CountdownPipe } from './countdown.pipe';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
     ThreadDetailComponent,
     CommentComponent,
     AdminLoginComponent,
+    CountdownPipe,
   ],
   imports: [
     BrowserModule,

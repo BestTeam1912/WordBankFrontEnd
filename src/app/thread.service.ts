@@ -4,6 +4,8 @@ import { HttpClient} from "@angular/common/http";
 import { Observable, of } from 'rxjs';
 import { Community } from './community/classes/community.class';
 import { Comment } from './comment/class/comment';
+import { User } from './user';
+import { Moneymap } from './moneymap.class';
 
 @Injectable({
   providedIn: 'root'
@@ -34,17 +36,20 @@ export class ThreadService {
     return this.http.post<Comment>(this.url + "/add/comment/" + thread.id, comment);
   }
 
+  addUserToThread(thread:Thread, user:User):Observable<Moneymap>{
+    return this.http.post<Moneymap>("http://localhost:9000/thread/add/user/" + thread.id , user);
+  }
+
+  getUserCurrency(thread:Thread, user:User):Observable<number>{
+    return this.http.get<number>(`${this.url}/get/currency/${thread.id}/${user.id}`);
+  }
+
   replyComment(thread:Thread, comment:Comment, reply:Comment):Observable<Comment>{
     reply.dateCreated = new Date();
     return this.http.post<Comment>(this.url + "/reply/" + thread.id + "/" + comment.id, reply);
   }
   createThread(thread:Thread):Observable<Thread>{
     return this.http.post<Thread>(this.url + "/add", thread);
-  }
-
-  updateThread(thread:Thread){
-    let threadToUpdate = this.threads.find( t => t.id == thread.id )
-    threadToUpdate = thread;
   }
 
   deleteThread(threadid:number, comid:number){
