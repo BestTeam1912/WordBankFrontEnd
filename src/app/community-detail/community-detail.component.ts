@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Thread } from '../thread/classes/thread.class';
 import { ThreadService } from '../thread.service';
 import { SessionService } from '../session.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-community-detail',
@@ -16,6 +17,7 @@ export class CommunityDetailComponent implements OnInit {
   private com: Community;
   private addThreadBool: Boolean;
   private addThread: Thread;
+  private user:User;
 
   constructor(private service:CommunityService,
     private serviceThread:ThreadService,
@@ -29,6 +31,7 @@ export class CommunityDetailComponent implements OnInit {
   ngOnInit() {
     this.getCommunityByTitle();
     this.addThreadBool=false;
+    this.user = this.session.getSessionUser();
     // getThreadsByID(com.id);
   }
 
