@@ -122,6 +122,7 @@ export class ThreadDetailComponent implements OnInit {
       this.threadService.findCommentsByThread(threadId).subscribe( comments => this.comments = comments );
     });
     this.addCommentToggle = false;
+    this.user = this.sessionService.getSessionUser();
   }
 
 

@@ -17,7 +17,7 @@
 <div class="container">
     <div class="row">
         <div class="col"></div>
-        <div class="col-sm rounded" id="login">
+        <div class="col-sm rounded text-light" id="login">
             <div class="d-flex justify-content-center">
             <Label>Enter your credentials to log in</Label>
             </div>
@@ -25,23 +25,26 @@
             <label>Username</label>
             </div>
             <div class="d-flex justify-content-center">
-            <input type="text" [(ngModel)]="user.username" class="username" placeholder="Enter Username">
+            <input type="text" [(ngModel)]="user.username" class="form-control" placeholder="Enter Username">
             </div>
             <br>
             <div class="d-flex justify-content-center">
             <label>Password</label>
             </div>
             <div class="d-flex justify-content-center">
-            <input type="password" [(ngModel)]="user.password" class="password" placeholder="Enter Password">
+            <input type="password" [(ngModel)]="user.password" class="form-control" placeholder="Enter Password">
             </div>
             <br>
             <div class="btn-toolbar" role="toolbar">
                 <div class="btn-group mr-2" role="group">
-                    <button type="button" (click)="login()" class="btn btn-dark">Login</button>
+                    <a class="btn btn-dark" routerLink="/register">Register</a>
                 </div>
                 <div class="btn-group mr-2" role="group">
-                    <button type="button" class="btn btn-dark"><a routerLink="/register">Register</a></button>
+                    <button type="button" (click)="login()" class="btn btn-dark">Login</button>
                 </div>
+                <!-- <div class="btn-group mr-2" role="group">
+                    <button type="button" class="btn btn-dark"><a routerLink="/register">Register</a></button>
+                </div> -->
             </div>
             <br>
             <br>

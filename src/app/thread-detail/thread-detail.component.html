@@ -1,15 +1,18 @@
 <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
 	<a class="navbar-brand" >Relpy</a>
 	<div class="collapse navbar-collapse" >
-	  <ul class="navbar-nav mr-auto">
+	  <ul class="navbar-nav ml-auto">
 		<div>
 		  <li  class="nav-item" (click)="logout()" >
-			<a class="nav-link">logout</a>
+			<a class="nav-link">Logout</a>
 		  </li>
 		</div>
 		<li  class="nav-item" (click)="Community()" >
-			<a class="nav-link" >community</a>
-		</li>
+			<a class="nav-link" >Community</a>
+    </li>
+    <li class="nav-link">
+      Welcome {{user.username}}
+    </li>
 	  </ul>
 	</div>
   </nav>
